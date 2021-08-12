@@ -18,16 +18,30 @@ class UserController{
         const {email,password} = req.body
         const user = await User.findOne({where:{email}})
         if(!user){
-            return next(ApiError.badRequest('пользователь не найден'))
+            return next(ApiError.forbidden('пользователь не найден'))
         }
         if(password !== user.password) {
-            return next(ApiError.badRequest('пользователь ввёл неверный пароль'))
+            return next(ApiError.forbidden('пользователь ввёл неверный пароль'))
         }      
         return res.json(user)
     }
     async check (req,res,next){
       
     }
+     async deleteUser(req, res) {
+        const userId = req.params;
+         try{
+         const user = User.findOne({where:{userId}})
+
+         await user.destroy()
+
+         return res.json({message:'User deleted'})
+
+        }catch(e){
+        return res.status(500).json({message:`${e} something is wrong`})
+         }
+     }
+
 }
 
 module.exports = new UserController()

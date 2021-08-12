@@ -14,11 +14,7 @@ class TrackController{
     }
     async getOne(req,res){
         const {id} = req.params
-        const track = await Track.findOne(
-            {
-                where:{id}
-            }
-        )
+        const track = await Track.findOne({where:{id}})
         return res.json(track)
     }
 }
