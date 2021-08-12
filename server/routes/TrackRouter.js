@@ -1,10 +1,11 @@
 const Router = require('express')
 const router = new Router()
+const trackController = require('../controllers/trackController')
 
 
-router.post('/',)
-router.get('/',)
-router.get('/:id',)
+router.post('/',trackController.create)
+router.get('/',trackController.getAll)
+router.get('/:id',trackController.getOne)
 
 
 module.exports = router
