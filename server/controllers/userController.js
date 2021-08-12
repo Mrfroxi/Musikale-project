@@ -29,7 +29,7 @@ class UserController{
       
     }
      async deleteUser(req, res) {
-        const userId = req.params;
+        const userId = req.params.id;
          try{
          const user = User.findOne({where:{userId}})
 
