@@ -14,10 +14,6 @@ const PlayList = sequelize.define('playList' ,{
   name :{type:DataTypes.STRING },
 })
 
-const PlayListTrack = sequelize.define('playListTrack' ,{
-  id :{type:DataTypes.INTEGER , primaryKey :true  , autoIncrement : true},
-})
-
 const Track = sequelize.define('track' ,{
   id :{type:DataTypes.INTEGER , primaryKey :true  , autoIncrement : true},
   name :{type:DataTypes.STRING ,unique:true , allowNull :false },
@@ -26,15 +22,12 @@ const Track = sequelize.define('track' ,{
 User.hasMany(PlayList)
 PlayList.belongsTo(User)
 
-PlayList.hasMany(PlayListTrack)
-PlayListTrack.belongsTo(PlayList)
+PlayList.belongsToMany(Track, {through: "PlayListTrack"});
+Track.belongsToMany(PlayList, {through: "PlayListTrack"});
 
-Track.hasMany(PlayListTrack)
-PlayListTrack.belongsTo(Track)
 
 module.exports = {
   User,
   PlayList,
-  PlayListTrack,
   Track
 }
