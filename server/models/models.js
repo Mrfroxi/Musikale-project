@@ -17,7 +17,6 @@ const PlayList = sequelize.define('playList' ,{
 const Track = sequelize.define('track' ,{
   id :{type:DataTypes.INTEGER , primaryKey :true  , autoIncrement : true},
   name :{type:DataTypes.STRING ,unique:true , allowNull :false },
-  type: {type: DataTypes.STRING }
 })
 
 User.hasMany(PlayList)

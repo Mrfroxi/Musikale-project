@@ -4,9 +4,14 @@ const ApiError = require("../error/ApiError")
 
 class TrackController{
     async  create(req,res){
-        const{name,file} =req.body
-        const track = await Track.create({name,type:file})
-        return res.json(track)
+        try{
+            const{filename} =req.file
+            const track = await Track.create({name:filename})
+            return res.json(track)
+        }catch(e){
+            console.log(e)
+        }
+      
     }
     async getAll(req,res){
         const tracks = await Track.findAll()

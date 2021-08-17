@@ -12,7 +12,7 @@ const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const app = express()
 app.use(cors()) // Cors для всех 
 app.use(express.json()) //Парсить json 
-app.use('/upload',express.static(path.join(__dirname,'upload')))
+app.use('/song',express.static(path.join(__dirname,'song')))
 app.use(morgan("dev"));
 app.use('/api',router)
 
