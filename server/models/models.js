@@ -13,13 +13,6 @@ const PlayList = sequelize.define('playList', {
   name: { type: DataTypes.STRING },
 });
 
-const Track = sequelize.define('track', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  name: { type: DataTypes.STRING, unique: true, allowNull: false },
-  artist: { type: DataTypes.STRING, unique: false, allowNull: false },
-  pictureData: { type: DataTypes.STRING },
-});
-
 const Track = sequelize.define('track' ,{
   id :{type:DataTypes.INTEGER , primaryKey :true  , autoIncrement : true},
   name :{type:DataTypes.STRING ,unique:true , allowNull :false },
