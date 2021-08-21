@@ -1,4 +1,4 @@
-const {Track} = require('../models/models')
+const { Track } = require('../models/models');
 
 const ApiError = require("../error/ApiError")
 
@@ -23,19 +23,19 @@ class TrackController{
         const track = await Track.findOne({where:{id}})
         return res.json(track)
     }
-    async deleteUser(req, res) {
-        const id = req.params.id;
-         try{
-         const track = await Track.findOne({where:{id}})
 
-         await track.destroy()
+  async deleteUser(req, res) {
+    const { id } = req.params;
+    try {
+      const track = await Track.findOne({ where: { id } });
 
-         return res.json({message:'track deleted'})
+      await track.destroy();
 
-        }catch(e){
-        return res.status(500).json({message:`${e} something is wrong`})
-         }
-        }
+      return res.json({ message: 'track deleted' });
+    } catch (e) {
+      return res.status(500).json({ message: `${e} something is wrong` });
+    }
+  }
 }
 
-module.exports = new TrackController()
+module.exports = new TrackController();
