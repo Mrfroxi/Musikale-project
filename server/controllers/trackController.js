@@ -5,6 +5,7 @@ const ApiError = require("../error/ApiError")
 class TrackController{
     async  create(req,res){
         try{
+            console.log(req.file)
             const{filename} =req.file
             const track = await Track.create({name:filename})
             return res.json(track)
