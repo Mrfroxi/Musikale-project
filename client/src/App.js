@@ -1,14 +1,21 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './components/AppRouter';
+import {connect} from 'react-redux'
 
-function App() {
+
+
+function App(track) {
+  console.log(track)
   return (
+    <div>
     <BrowserRouter>
-    working
-    <AppRouter/>
+      <AppRouter/>
     </BrowserRouter>
-  );
+    </div>
+  )
 }
 
-export default App;
+export default connect(
+  ({track}) => ({track})
+) (App);

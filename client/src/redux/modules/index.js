@@ -1,5 +1,5 @@
 import track from './track'
 
-export default{
+export default {
   track
-}
+};
