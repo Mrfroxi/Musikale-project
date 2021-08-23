@@ -1,13 +1,23 @@
 const { Track } = require('../models/models');
-
 const ApiError = require("../error/ApiError")
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+ 
 
 class TrackController{
     async  create(req,res){
         try{
-            console.log(req.file)
+          let authorization = req.headers.authorization.split(' ')[1],
+          decoded;
+            try {
+                decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+            } catch (e) {
+                return res.status(401).send('unauthorized');
+            }
+            const id_user = decoded.id
+          // console.log(req.file)
             const{filename} =req.file
-            const track = await Track.create({name:filename})
+            const track = await Track.create({name:filename ,userId:id_user })
             return res.json(track)
         }catch(e){
             console.log(e)

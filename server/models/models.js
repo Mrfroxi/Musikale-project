@@ -18,8 +18,11 @@ const Track = sequelize.define('track' ,{
   name :{type:DataTypes.STRING ,unique:true , allowNull :false },
 })
 
-Track.hasMany(User);
-User.belongsTo(Track);
+User.hasMany(Track);
+Track.belongsTo(User);
+
+User.hasMany(PlayList);
+PlayList.belongsTo(User);
 
 PlayList.belongsToMany(Track, { through: 'PlayListTrack' });
 Track.belongsToMany(PlayList, { through: 'PlayListTrack' });

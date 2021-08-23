@@ -1,5 +1,4 @@
 const multer = require('multer');
-
 const storage = multer.diskStorage({
   destination(reg, file, cb) {
     cb(null, 'song/');
@@ -11,6 +10,7 @@ const storage = multer.diskStorage({
 
 const types = ['audio/mp3', 'audio/wav', 'audio/mpeg'];
 const fileFilter = (req, file, cb) => {
+
   if (types.includes(file.mimetype)) {
     cb(null, true);
   } else {
