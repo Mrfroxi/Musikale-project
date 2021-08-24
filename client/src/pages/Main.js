@@ -1,24 +1,27 @@
 import React from 'react'
-import  './style/Main.css'
 import {NavLink,useLocation} from 'react-router-dom'
-import Music from '../components/Music'
+import Music from '../components/MusicList'
+import Container from 'react-bootstrap/Container'
+import {Button} from 'react-bootstrap'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+
 let arr = [{name:'hello',artist:'baber'}]
 function Track() {
   return (
-    <div>
-      <Header/>
-    {arr.map}
-    </div>
+    <Container>
+    <Row>
+      <Col md={9}>
+
+      </Col>
+      <Col md={3}>
+
+      </Col>
+    </Row>
+  </Container>
+
   );
 }
 
 export default Track;
 
-function Header() {
-  return (
-    <div className='header_main'>
-      <h1 className='logo_fr'>my<span className='logo_sc'>Music</span></h1>
-      <input className='serch_header' type="text" />      
-    </div>
-  );
-}

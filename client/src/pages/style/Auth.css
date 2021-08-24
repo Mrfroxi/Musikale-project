@@ -482,6 +482,15 @@ iframe {
   visibility: visible;
   opacity: 1;
 }
+.p-t-115{
+  margin: 26px;
+}
+.txt1{
+  font-size: 14px;
+}
+.txt2{
+  font-size: 26px;
+}
 
 @media (max-width: 992px) {
   .alert-validate::before {

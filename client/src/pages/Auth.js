@@ -11,18 +11,17 @@ const  Auth = () => {
 	const[email,setEmail] = useState('')
 	const[password,setpassword] = useState('')
 
-const signIn = async() =>{
-	if(isLogin){
-		console.log(email)
-		console.log(password)
-		const response = await login(email,password);
-	}else{
-		console.log(email)
-		console.log(password)
-		const response = await registration(email,password)
-		console.log(response)
+	const signIn = async(e) =>{
+		e.preventDefault();
+		if(isLogin){
+			console.log(email)
+			console.log(password)
+			const response = await login(email,password);
+		}else{
+			const response = await registration(email,password)
+			console.log(response)
+		}
 	}
-}
 
   return (
     <div className="head">
