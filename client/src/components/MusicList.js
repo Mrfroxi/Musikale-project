@@ -1,14 +1,21 @@
 import React from 'react'
 import { Row } from 'react-bootstrap';
-import  ListGroup from  'react-bootstrap/ListGroup'
+import {useSelector,useDispatch} from 'react-redux'
+import MusicItem from './MusicListIem'
 
-
-function Music() {
+function MusicList() {
+  const dispatch = useDispatch()
+  const cash = useSelector(state=> {
+    return state.musicReducer
+  }
+    )
   return (
-    <Row className={"d-flex"}>
-
+    <Row className={"d-flex mt-4"}>
+      {cash.map((elem,index) => (
+        <MusicItem key={index} name={elem.name}/>
+      ))}
     </Row>
   );
 }
 
-export default Music;
+export default MusicList;

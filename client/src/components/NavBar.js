@@ -2,18 +2,32 @@ import React  from "react"
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
-import {Button} from 'react-bootstrap'
+import {Button, NavLink} from 'react-bootstrap'
+import { useHistory } from "react-router-dom"
+import {useSelector,useDispatch} from 'react-redux'
+import {MAIN_ROUTE,ADMIN_ROUTE,LOGIN_ROUTE,REGISTRATION_ROUTE} from '../utils/consts'
+
 const NavBar = () =>{
+  const dispatch = useDispatch()
+  const user = useSelector(state=> {
+    return state.UserReducer
+  })
+  const history = useHistory()
+
   return (
-          <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark">
     <Container>
-    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Main</Nav.Link>
-      <Nav.Link href="#pricing">My track</Nav.Link>
-    </Nav>
-    <Button variant = {"outline-light"}>login</Button>
+      <Nav className="me-auto"><Button   onClick={() => history.push(MAIN_ROUTE)} style={{margin:4}  }>Main</Button>
+      </Nav>
+      {user.__isAuth ? 
+      <Nav className='ml-auto' >
+      <Button variant = {"outline-light"}  onClick={() => history.push(ADMIN_ROUTE)} style={{margin:4}  }>Admin</Button>
+      <Button variant = {"outline-light "} onClick={() => dispatch({type:'logOut'})} style={{margin:4} } >Exit</Button>
+    </Nav>:
+        <Nav className='ml-auto' >
+        <Button variant = {"outline-light"}  onClick = {() =>  history.push(REGISTRATION_ROUTE) }>registration</Button>
+      </Nav>  
+      }
     </Container>
   </Navbar>
   )

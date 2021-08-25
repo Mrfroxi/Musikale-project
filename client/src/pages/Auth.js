@@ -1,25 +1,43 @@
 import React, { useState } from 'react'
 import  './style/Auth.css'
 import {NavLink,useLocation} from 'react-router-dom'
-import {REGISTRATION_ROUTE,LOGIN_ROUTE} from '../utils/consts'
+import {REGISTRATION_ROUTE,LOGIN_ROUTE, MAIN_ROUTE} from '../utils/consts'
 import { login, registration } from '../http/userAPI'
+import {useSelector,useDispatch} from 'react-redux'
+import { useHistory } from "react-router-dom"
 
 const  Auth = () => {
   const location = useLocation()
   const isLogin = location.pathname === LOGIN_ROUTE
-
+	const history = useHistory()
 	const[email,setEmail] = useState('')
 	const[password,setpassword] = useState('')
 
-	const signIn = async(e) =>{
+	const dispatch = useDispatch()
+  const user = useSelector(state=> {
+    return state.UserReducer
+  })
+
+
+	const signIn = async (e) =>{
 		e.preventDefault();
-		if(isLogin){
-			console.log(email)
-			console.log(password)
-			const response = await login(email,password);
-		}else{
-			const response = await registration(email,password)
-			console.log(response)
+		try{
+			let infoUser;
+			if(isLogin){
+				infoUser = await login(email,password);
+				console.log('complete')
+			}else{
+				infoUser = await registration(email,password)
+			}
+
+			dispatch({type:'SetIsAuth'})
+			dispatch({type:'SetUser', info:{
+				email,
+			}})
+			history.push(MAIN_ROUTE)
+
+		}catch(e){
+			alert("incorrect email or password")
 		}
 	}
 
@@ -51,7 +69,7 @@ const  Auth = () => {
 					<div className="container-login100-form-btn">
 						<div className="wrap-login100-form-btn">
 							<div className="login100-form-bgbtn"></div>
-							{isLogin ? 		<button className="login100-form-btn">
+							{isLogin ? 		<button className="login100-form-btn" onClick={signIn}>
 								Login
 							</button>:
 							<button className="login100-form-btn" onClick={signIn}>

@@ -24,7 +24,6 @@ const defaultState = [
 
 
 export const musicReducer = (state=defaultState,action ) =>{
-  console.log(state)
   switch(action.type){
     case "GET_Music":
       return {...state,cash:state.cash+1}
