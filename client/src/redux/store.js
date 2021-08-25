@@ -1,22 +1,9 @@
-// import {createStore , applyMiddleware , combineReducers ,compose} from 'redux'
-// import thunk from 'redux-thunk'
-// import reduxLogger from 'redux-logger'
+import {createStore,combineReducers} from 'redux'
+import {composeWithDevTools} from 'redux-devtools-extension'
+import {musicReducer} from './musicReducer'
 
 
-// const configureStore = (reducers = {} , preloadedState = {} , middlewares = []) => createStore(
-//   combineReducers({
-//     ...rootReducers,
-//     reducers
-//   }
-//   ),
-//   preloadedState,
-//   compose(
-//     applyMiddleware(
-//       ...middlewares,
-//       thunk,
-//       reduxLogger
-//     ),
-//   )
-// )
-
-// export default configureStore;
+const rootReducer = combineReducers({
+  musicReducer
+})
+export const  store = createStore(rootReducer, composeWithDevTools())

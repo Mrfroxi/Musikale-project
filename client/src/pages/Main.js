@@ -5,9 +5,12 @@ import Container from 'react-bootstrap/Container'
 import {Button} from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import {useSelector,useDispatch} from 'react-redux'
 
-let arr = [{name:'hello',artist:'baber'}]
-function Track() {
+
+function Main() {
+  const dispatch = useDispatch()
+  const cash = useSelector(state => console.log(state))
   return (
     <Container>
     <Row>
@@ -23,5 +26,5 @@ function Track() {
   );
 }
 
-export default Track;
+export default Main;
 
