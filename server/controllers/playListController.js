@@ -1,19 +1,19 @@
-const { PlayList } = require('../models/models');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const { PlayList } = require("../models/models");
+// const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 class PlayListController {
   async create(req, res) {
     try {
-        let authorization = req.headers.authorization.split(' ')[1],
+        let authorization = req.headers.authorization.split(" ")[1],
         decoded;
           try {
               decoded = jwt.verify(authorization, process.env.SECRET_KEY);
           } catch (e) {
-              return res.status(401).send('unauthorized');
+              return res.status(401).send("unauthorized");
           }
           const id_user = decoded.id
       const { name } = req.body;
-      const playList = await PlayList.create({ name:name , userId:id_user});
+      const playList = await PlayList.create({ name:name , userId:id_user });
       res.json(playList);
     } catch (e) {
       console.log(e);
@@ -38,7 +38,7 @@ class PlayListController {
 
       await playList.destroy();
 
-      return res.json({ message: 'PlayList deleted' });
+      return res.json({ message: "PlayList deleted" });
     } catch (e) {
       return res.status(500).json({ message: `${e} something is wrong` });
     }
