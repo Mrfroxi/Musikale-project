@@ -24,7 +24,7 @@ class UserController {
     const token = generateJwt(user.id, user.email, user.role);
     return res.json({ token });
   }
-
+  
   async login(req, res, next) {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
@@ -43,7 +43,10 @@ class UserController {
     const token = generateJwt(req.user.id, req.user.email, req.user.role);
     return res.json({ token });
   }
-
+  async getAll(req,res){
+    const users = await User.findAll()
+    return res.json(users)
+  }
   async deleteUser(req, res) {
     const { id } = req.params;
     try {
@@ -53,7 +56,7 @@ class UserController {
 
       return res.json({ message: "User deleted" });
     } catch (e) {
-      return res.status(500).json({ message: `${e} something is wrong` });
+      return res.status(500).json({ message: `${e} something is wrong1` });
     }
   }
 }
