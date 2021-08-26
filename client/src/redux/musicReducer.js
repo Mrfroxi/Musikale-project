@@ -1,32 +1,12 @@
 const defaultState = [
-{
-  name:'filipkirkorov',
-  cash:6
-},
-{
-  name:'filipkirkorov',
-  cash:5
-},
-{
-  name:'filipkirkorov',
-  cash:7
-},
-{
-  name:'filipkirkorov',
-  cash:77
-},
-{
-  name:'filipkirkorov',
-  cash:8
-},
 
 ]
 
 
 export const musicReducer = (state=defaultState,action ) =>{
   switch(action.type){
-    case "GET_Music":
-      return {...state,cash:state.cash+1}
+    case "GET_ALL_Track":
+      return [...state,...action.allTrack]
     default:
       return state
   }

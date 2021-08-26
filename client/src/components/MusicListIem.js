@@ -6,8 +6,8 @@ function MusicItem({name}) {
   return (
   <Col md={3}>
     <Card style={{width:200,cursor:'pointer'}}  border={'light'} >
-      <Image width={170} height={200} src={name.img}></Image>
-      <div>Some name playList</div>
+      <Image width={170} height={200} ></Image>
+      <div>{name}</div>
     </Card>
   </Col>
   );

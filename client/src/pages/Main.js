@@ -6,14 +6,10 @@ import {Button} from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import {takeTrack,takeplayList} from '../http/trackAPI'
+import {useSelector,useDispatch} from 'react-redux'
 
 
 function Main() {
-
-  useEffect(() => {
-    takeTrack().then(data => console.log(data))
-    takeplayList().then(data => console.log(data))
-  })
   return (
     <Container >
     <Row>
