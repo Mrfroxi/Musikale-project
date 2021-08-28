@@ -2,19 +2,13 @@ const { Track } = require("../models/models");
 // const ApiError = require("../error/ApiError")
 // const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-// const mm = require('music-metadata');
-// const util = require('util');
+const mm = require('music-metadata');
+const util = require('util');
 
 
 class TrackController{
     async  create(req,res){
         try{
-          // const metadata = await mm.parseFile(`./song/${req.filename}`);
-          // console.log(metadata.common.picture[0].format)
-          // console.log(metadata.common.picture[0].data)
-          // const format = metadata.common.picture[0].format
-          // const data = metadata.common.picture[0].data
-          // console.log(`data:${format};base64,${Buffer.from(data).toString('base64')}`)
           let authorization = req.headers.authorization.split(" ")[1],
           decoded;
             try {
@@ -22,10 +16,14 @@ class TrackController{
             } catch (e) {
                 return res.status(401).send("unauthorized");
             }
+          const metadata = await mm.parseFile(`./song/${req.file.filename}`);
+          const format = metadata.common.picture[0].format
+          const data = metadata.common.picture[0].data
+          const img_base64 = `data:${format};base64,${Buffer.from(data).toString('base64')}`
             const id_user = decoded.id
-          console.log(req.file)
+          console.log(req)
             const{ filename } =req.file
-            const track = await Track.create({ name:filename ,userId:id_user })
+            const track = await Track.create({ name:filename ,userId:id_user ,img:img_base64 })
             return res.json(track)
         }catch(e){
             console.log(e)
