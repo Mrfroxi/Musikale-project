@@ -1,16 +1,17 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import {Button, NavLink} from 'react-bootstrap'
 import {useSelector,useDispatch} from 'react-redux'
 import {ListGroup} from 'react-bootstrap'
 import {deleteusers} from '../http/adminAPI'
+
 function Admin() {
   const dispatch = useDispatch()
   const user = useSelector(state=> {
     return state.AdminReducer
   })
-  const DeleteUser = (e) => {
-    deleteusers(e).then(data=>console.log(data))
+  const DeleteUser = (id) => {
+    deleteusers(id).then(()=>dispatch({type:'DELETE_USER',id}))
   }
 
   return (

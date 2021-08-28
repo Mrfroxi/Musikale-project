@@ -14,6 +14,7 @@ function Main() {
     <Container >
     <Row>
       <Col md={9}>
+        <audio/>
       <MusicList/>
       </Col>
       <Col md={3}>

@@ -10,6 +10,8 @@ function App() {
   //   return state
   // })
   useEffect(() => {
+    const token = localStorage.getItem('token')
+    token && dispatch({type:"SetIsAuth"})
     takeTrack().then(data => dispatch({type:'GET_ALL_Track' , allTrack:[...data]}))
     takeplayList().then(data =>dispatch({type:'GET_ALL_PlayList' , allplayList:[...data]}))
     takeusers().then(data =>dispatch({type:'GET_ALL_USERS' , allUser:[...data]}))
