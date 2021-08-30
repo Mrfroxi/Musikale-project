@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import {NavLink,useLocation} from 'react-router-dom'
 import MusicList from '../components/MusicList'
 import Container from 'react-bootstrap/Container'
@@ -7,10 +7,21 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import {takeTrack,takeplayList} from '../http/trackAPI'
 import {useSelector,useDispatch} from 'react-redux'
+import FooterMusicPlayer from "../components/FooterMusical";
+import FooterSelectMusic from "../components/FooterSelectMusic";
 
 
 function Main() {
+  const [currMusic, setCurrMusic] = useState(null);
+
+  const {playing} = useSelector(state => state.musicReducer);
+
+  useEffect(() => {
+    setCurrMusic(playing)
+}, [playing])
+
   return (
+    <div>
     <Container >
     <Row>
       <Col md={9}>
@@ -20,8 +31,20 @@ function Main() {
       <Col md={3}>
 
       </Col>
+
     </Row>
   </Container>
+  <React.Fragment>
+  {
+      currMusic
+         ?
+       <FooterMusicPlayer music={currMusic}/>
+         :
+        <FooterSelectMusic/>
+
+    }
+  </React.Fragment>
+  </div>
 
   );
 }
