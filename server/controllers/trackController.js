@@ -3,6 +3,7 @@ const { Track } = require("../models/models");
 // const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mm = require('music-metadata');
+// eslint-disable-next-line no-unused-vars
 const util = require('util');
 
 

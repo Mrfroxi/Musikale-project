@@ -1,0 +1,59 @@
+const { FavouriteTrack } = require("../models/models");
+
+const jwt = require("jsonwebtoken");
+
+
+class FavouriteTrackController{
+    async Add(req,res){
+      try {
+        let authorization = req.headers.authorization.split(" ")[1],
+        decoded;
+          try {
+              decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+          } catch (e) {
+              return res.status(401).send("unauthorized");
+          }
+      const id_user = decoded.id
+      const { id_track } = req.body;
+      // console.log(req.body)
+      const FavTrack = await FavouriteTrack.create({ trackId:id_track , userId:id_user });
+      res.json(FavTrack);
+    } catch (e) {
+      console.log(e);
+    }
+    }
+    async getAll(req,res){
+        let authorization = req.headers.authorization.split(" ")[1],
+        decoded;
+          try {
+              decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+          } catch (e) {
+              return res.status(401).send("unauthorized");
+          }
+      const id_user = decoded.id
+        const tracks = await FavouriteTrack.findAll({ where:{  userId:id_user } })
+        return res.json(tracks)
+    }
+  async deleteFavouriteTrack(req, res) {
+    const { id } = req.params;
+    try {
+      let authorization = req.headers.authorization.split(" ")[1],
+      decoded;
+        try {
+            decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+        } catch (e) {
+            return res.status(401).send("unauthorized");
+        }
+      const id_user = decoded.id
+      const track = await FavouriteTrack.findOne({ where: { trackId:id , userId:id_user } });
+
+      await track.destroy();
+
+      return res.json({ message: "track deleted" });
+    } catch (e) {
+      return res.status(500).json({ message: `${e} something is wrong` });
+    }
+  }
+}
+
+module.exports = new FavouriteTrackController();
