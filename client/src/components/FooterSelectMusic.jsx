@@ -4,11 +4,10 @@ import {ThemeContext} from "../pages/style/Theme";
 import {Link} from "react-router-dom";
 
 function FooterSelectMusic() {
-    const useStyle = useContext(ThemeContext);
 
     return (
-        <div style={{backgroundColor:useStyle.subTheme}} className={"Footer_Select_Music"}>
-            <Link to={"/home"}>
+        <div  className={"Footer_Select_Music"}>
+            <Link to={"/main"}>
                 Select a music to continue
             </Link>
         </div>

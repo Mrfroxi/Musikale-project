@@ -31,9 +31,11 @@ const  Auth = () => {
 			}
 
 			dispatch({type:'SetIsAuth'})
+
 			dispatch({type:'SetUser', info:{
 				email,
 			}})
+
 			history.push(MAIN_ROUTE)
 
 		}catch(e){
@@ -89,7 +91,7 @@ const  Auth = () => {
 						<NavLink className = 'txt2'to ={REGISTRATION_ROUTE}>	Sign Up </NavLink>
 						</> :
 						<>
-						<span class="txt1">
+						<span className="txt1">
 							 Have an account?
 						</span> 
 						<NavLink className = 'txt2'to ={LOGIN_ROUTE}>	Sign Up </NavLink>

@@ -9,6 +9,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
+  padding: 20px;
   .playback {
     position: absolute;
     top: -14px;
@@ -93,10 +94,26 @@
   }
 }
 
+
 @media only screen and (max-width: 500px) {
   .footer-player {
     .curr-music-details {
       display: none;
     }
   }
+}
+.MuiSvgIcon-fontSizeLarge{
+  color:red
+}
+.MuiSlider-colorPrimary{
+  color: rgb(186, 85, 211);
+}
+.MuiSlider-track{
+  color: rgb(85, 211, 102);
+}
+.MuiSlider-rail{
+  color: rgb(235, 4, 235);
+}
+.MuiSvgIcon-root{
+  color: rgb(186, 85, 211);
 }

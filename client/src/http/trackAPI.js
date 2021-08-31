@@ -19,3 +19,16 @@ export const takeplayList = async(email,password) =>{
   const {data} = await $authHost.get('api/playList')
   return data
 }
+export const takeFavouriteTrack = async() =>{
+  const {data} = await $authHost.get('api/favouritetrack')
+  return data
+}
+export const AddtakeFavouriteTrack = async(id_track) =>{
+  const {data} = await $authHost.post('api/favouritetrack',{id_track})
+  return data
+}
+export const deleteFavouriteTrack = async(id) =>{
+  const {data} = await $authHost.delete('api/favouritetrack/'+id )
+  return data
+}
+

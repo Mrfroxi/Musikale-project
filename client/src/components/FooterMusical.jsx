@@ -144,7 +144,7 @@ function FooterMusicPlayer({music}) {
                             value={seekTime} onChange={handleSeekChange}/>
                 }
             </div>
-            <Button
+            <Button 
                     startIcon={<Avatar variant="square" src={img} alt={name}/>}
                     onClick={handleBannerToggle}
                     className="curr-music-container">
@@ -164,7 +164,7 @@ function FooterMusicPlayer({music}) {
                                       changeIcon={<SkipPreviousIcon fontSize={"large"}/>}
                                       onClicked={handleToggle}/>
 
-<audio ref={audioElement} src={require("./Clarx - Shakedown [NCS Release].mp3" ).default} preload={"metadata"}/>
+<audio ref={audioElement} src={require(`../../../server/song/${name}` ).default} preload={"metadata"}/>
 
                 <ControlsToggleButton style={pointer} type={"play-pause"}
                                       defaultIcon={<PlayArrowIcon fontSize={"large"}/>}

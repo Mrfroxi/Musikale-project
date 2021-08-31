@@ -6,9 +6,9 @@ import {increaseTimesPlayed, setCurrentPlaying} from "../actions/actions";
 import Name from "./Name";
 import {Skeleton} from "@material-ui/lab";
 import Box from "@material-ui/core/Box";
-
+import FavouriteButton from './AddFavouriteButton'
 function MusicCard(props) {
-    const {name,img} = props.music;
+    const {name,img,id} = props.music;
 
     const [isHovered, setHovered] = useState(false);
 
@@ -46,6 +46,7 @@ function MusicCard(props) {
                             <img src={img} alt={name}/>
                             <div className="play-circle">
                                 <PlayCircleFilledWhiteIcon/>
+                                <FavouriteButton id={id}/>
                             </div>
                         </div>
                         <React.Fragment>

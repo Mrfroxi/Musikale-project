@@ -1,0 +1,16 @@
+.addButton{
+  font-size: 20px;
+  position: absolute;
+
+  top: 159px;
+
+  left: 159px;
+  background-color: green;
+  width: 40px;
+  text-align: center;
+  height: 40px;
+}
+
+.addButton:hover{
+  background-color: rgb(235, 4, 235);
+}

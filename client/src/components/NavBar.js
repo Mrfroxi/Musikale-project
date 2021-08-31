@@ -17,7 +17,7 @@ const NavBar = () =>{
   return (
     <Navbar bg="dark" variant="dark">
     <Container>
-      <Nav className="me-auto"><Button   onClick={() => history.push(MAIN_ROUTE)} style={{margin:4}  }>Main</Button>
+      <Nav className="me-auto"><Button variant = {"info"}  onClick={() => history.push(MAIN_ROUTE)} style={{margin:4}  }>Main</Button>
       </Nav>
       {user.__isAuth ? 
       <Nav className='ml-auto' >
