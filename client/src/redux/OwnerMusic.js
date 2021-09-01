@@ -7,7 +7,7 @@ export const OwnereMusic = (state=defaultState,action ) =>{
     case "GET_ALL_OWNER_TRACK":
     return {
       ...state,
-      tracks:[...action.tracks]
+      tracks:[...action.allTrack]
     
     }
     case "ADD_OWNER_TRACK":

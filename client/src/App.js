@@ -10,7 +10,8 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token')
     token && dispatch({type:"SetIsAuth"})
-    takeTrack().then(data => dispatch({type:'GET_ALL_Track' , allTrack:[...data]}))
+    takeTrack().then(data => dispatch({type:'GET_ALL_OWNER_TRACK' , allTrack:[...data.Ownertracks]}))
+    takeTrack().then(data => dispatch({type:'GET_ALL_Track' , allTrack:[...data.tracks]}))
     takeplayList().then(data =>dispatch({type:'GET_ALL_PlayList' , allplayList:[...data]}))
     takeusers().then(data =>dispatch({type:'GET_ALL_USERS' , allUser:[...data]}))
     takeFavouriteTrack().then(data => dispatch({type:'GET_ALL_FAVOURITE_TRACK' , tracks:[...data]}))

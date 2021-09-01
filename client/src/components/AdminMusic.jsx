@@ -1,20 +1,22 @@
 import axios from "axios";
 import React ,{useState,useEffect} from "react"
 import {Button,Row} from 'react-bootstrap'
-import {useSelector} from 'react-redux'
 import FooterMusicPlayer from "../components/FooterMusical";
 import FooterSelectMusic from "../components/FooterSelectMusic";
 import MusicCard from './MusicListIem'
 import {$authHost} from '../http/index'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
+import { useHistory } from "react-router-dom"
 
 const AdminMusic = () =>{
-  
+  const history = useHistory()
   const dispatch = useDispatch()
   const[isPlayList,setisPlayList] = useState(true)
   const {tracks} = useSelector(state=> state.FavouriteMusic)
   const [currMusic, setCurrMusic] = useState(null);
-
+  const ownertracks = useSelector(state=> {
+    return state.OwnereMusic.tracks
+  })
   const {playing,playlists} = useSelector(state => state.musicReducer);
 
   const[newSong,setnewSong] = React.useState(null)
@@ -28,7 +30,7 @@ const AdminMusic = () =>{
         'content-type':'mulpipart/form-data'
       }
     })
-    .then(res => console.log(res))
+    .then(res => dispatch({type:"ADD_OWNER_TRACK" , track:res.data}))
     }catch(e){
 
     }
@@ -37,6 +39,7 @@ const AdminMusic = () =>{
   useEffect(() => {
     setCurrMusic(playing)
 }, [playing])
+
 
   return (
     <div className='AdminTracks'> 
@@ -56,6 +59,11 @@ const AdminMusic = () =>{
     <div>
       <input type="file" onChange={(e) =>setnewSong(e.target.files[0])} />
       <Button  variant = {"danger"} className = "btn" onClick={sendFile}>Отправить файл</Button>
+      <Row className={"d-flex mt-4"}>
+      {ownertracks.map((elem) => (
+        <MusicCard  key={elem.id} music={elem}/>
+      ))}
+    </Row>  
     </div>
     }
         {

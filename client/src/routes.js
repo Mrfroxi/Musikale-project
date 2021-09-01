@@ -1,8 +1,8 @@
-import {MAIN_ROUTE,LOGIN_ROUTE,REGISTRATION_ROUTE,ADMIN_ROUTE} from "./utils/consts"
+import {MAIN_ROUTE,LOGIN_ROUTE,REGISTRATION_ROUTE,ADMIN_ROUTE,  ADMIN_ROUTE_OWNER} from "./utils/consts"
 import Auth from './pages/Auth'
 import Main from './pages/Main'
 import Admin from "./pages/Admin"
-
+import AdminMusic from "./components/AdminMusic"
 export const authRoutes = [
   {
     path:LOGIN_ROUTE,
@@ -34,5 +34,9 @@ export const publicRoutes = [
   {
     path:MAIN_ROUTE,
     Component:Main
-  }
+  },
+  // {
+  //   path: ADMIN_ROUTE_OWNER,
+  //   Component:AdminMusic
+  // },
 ]
