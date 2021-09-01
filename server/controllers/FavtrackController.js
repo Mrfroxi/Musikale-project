@@ -14,9 +14,8 @@ class FavouriteTrackController{
               return res.status(401).send("unauthorized");
           }
       const id_user = decoded.id
-      const { id_track } = req.body;
-      // console.log(req.body)
-      const FavTrack = await FavouriteTrack.create({ trackId:id_track , userId:id_user });
+      const { id,name,img } = req.body;
+      const FavTrack = await FavouriteTrack.create({ trackId:id , userId:id_user ,name:name , img:img });
       res.json(FavTrack);
     } catch (e) {
       console.log(e);

@@ -32,14 +32,25 @@ class TrackController{
 
     }
     async getAll(req,res){
+      let authorization = req.headers.authorization.split(" ")[1],
+      decoded;
+        try {
+            decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+        } catch (e) {
+            return res.status(401).send("unauthorized");
+        }
+      const id_user = decoded.id
+      const Ownertracks = await Track.findAll({ where:{  userId:id_user } })
         const tracks = await Track.findAll()
-        return res.json(tracks)
+        return res.json({ tracks , Ownertracks })
     }
+
     async getOne(req,res){
         const { id } = req.params
         const track = await Track.findOne({ where:{ id } })
         return res.json(track)
     }
+
 
   async deleteUser(req, res) {
     const { id } = req.params;
