@@ -1,36 +1,63 @@
+import axios from "axios";
 import React ,{useState,useEffect} from "react"
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import Container from 'react-bootstrap/Container'
-import {Button, NavLink,Row} from 'react-bootstrap'
-import { useHistory } from "react-router-dom"
-import {useSelector,useDispatch} from 'react-redux'
+import {Button,Row} from 'react-bootstrap'
+import {useSelector} from 'react-redux'
 import FooterMusicPlayer from "../components/FooterMusical";
 import FooterSelectMusic from "../components/FooterSelectMusic";
 import MusicCard from './MusicListIem'
+import {$authHost} from '../http/index'
+import {useDispatch} from 'react-redux'
 
 const AdminMusic = () =>{
+  
+  const dispatch = useDispatch()
   const[isPlayList,setisPlayList] = useState(true)
   const {tracks} = useSelector(state=> state.FavouriteMusic)
   const [currMusic, setCurrMusic] = useState(null);
 
   const {playing,playlists} = useSelector(state => state.musicReducer);
 
+  const[newSong,setnewSong] = React.useState(null)
+
+  const sendFile = React.useCallback( async () => {
+    try{
+    const data =  new FormData()
+    data.append('song',newSong)
+    await $authHost.post('api/track',data,{
+      headers:{
+        'content-type':'mulpipart/form-data'
+      }
+    })
+    .then(res => console.log(res))
+    }catch(e){
+
+    }
+  },[newSong])
+
   useEffect(() => {
     setCurrMusic(playing)
 }, [playing])
 
   return (
-    <div>
-    <div>
+    <div className='AdminTracks'> 
+    <div className ='panelPart'>
       <Button onClick={() =>setisPlayList(true) }>Favourite</Button>
       <Button onClick={() =>setisPlayList(false) }> Your Track</Button>
     </div>
-        <Row className={"d-flex mt-4"}>
-          {playlists.map((elem) => (
-            <MusicCard  key={elem.id} music={elem}/>
-          ))}
-        </Row> 
+    {
+      isPlayList
+      ?
+      <Row className={"d-flex mt-4"}>
+      {tracks.map((elem) => (
+        <MusicCard  key={elem.id} music={elem}/>
+      ))}
+    </Row> 
+    :
+    <div>
+      <input type="file" onChange={(e) =>setnewSong(e.target.files[0])} />
+      <Button  variant = {"danger"} className = "btn" onClick={sendFile}>Отправить файл</Button>
+    </div>
+    }
         {
       currMusic
          ?

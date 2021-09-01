@@ -6,7 +6,7 @@ import {AddtakeFavouriteTrack,deleteFavouriteTrack} from '../http/trackAPI'
 
 const FavouriteButton = (props) =>{
   const dispatch =  useDispatch()
-  const {id} = props
+  const {id,name,img} = props
   const[isFav,setIsFav] = useState(false)
   const AllTrack = useSelector(state => state.musicReducer.playlists)
   const favouriteTrack = useSelector(state => state.FavouriteMusic.tracks)
@@ -19,7 +19,7 @@ const FavouriteButton = (props) =>{
   const addMusic = (e) => {
     e.stopPropagation()
     const music = AllTrack.find(item => item.id === id);
-    AddtakeFavouriteTrack(id).then(() =>dispatch({type:"ADD_FAVOURITE_TRACK" ,track:music}))
+    AddtakeFavouriteTrack(id,name,img).then(() =>dispatch({type:"ADD_FAVOURITE_TRACK" ,track:music}))
   }
   const DeleteMusic = (e) => {
     e.stopPropagation()

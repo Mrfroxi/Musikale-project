@@ -46,7 +46,7 @@ function MusicCard(props) {
                             <img src={img} alt={name}/>
                             <div className="play-circle">
                                 <PlayCircleFilledWhiteIcon/>
-                                <FavouriteButton id={id}/>
+                                <FavouriteButton id={id} name={name} img={img}/>
                             </div>
                         </div>
                         <React.Fragment>

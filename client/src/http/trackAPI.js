@@ -23,8 +23,8 @@ export const takeFavouriteTrack = async() =>{
   const {data} = await $authHost.get('api/favouritetrack')
   return data
 }
-export const AddtakeFavouriteTrack = async(id_track) =>{
-  const {data} = await $authHost.post('api/favouritetrack',{id_track})
+export const AddtakeFavouriteTrack = async(id,name,img) =>{
+  const {data} = await $authHost.post('api/favouritetrack',{id,name,img})
   return data
 }
 export const deleteFavouriteTrack = async(id) =>{
