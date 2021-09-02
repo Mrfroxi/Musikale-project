@@ -1,6 +1,6 @@
 import React,{ useEffect } from 'react'
-import AppRouter from './components/AppRouter';
-import NavBar from './components/NavBar'
+import AppRouter from './components/appRouter';
+import NavBar from './components/navBar'
 import {useSelector,useDispatch} from 'react-redux'
 import {takeTrack,takeplayList,takeFavouriteTrack} from './http/trackAPI'
 import {takeusers} from './http/adminAPI'

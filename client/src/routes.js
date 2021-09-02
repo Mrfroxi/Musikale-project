@@ -2,7 +2,7 @@ import {MAIN_ROUTE,LOGIN_ROUTE,REGISTRATION_ROUTE,ADMIN_ROUTE,  ADMIN_ROUTE_OWNE
 import Auth from './pages/Auth'
 import Main from './pages/Main'
 import Admin from "./pages/Admin"
-import AdminMusic from "./components/AdminMusic"
+import AdminMusic from "./components/adminMusic"
 export const authRoutes = [
   {
     path:LOGIN_ROUTE,

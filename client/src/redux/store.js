@@ -1,11 +1,11 @@
 import {createStore,combineReducers} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {musicReducer} from './musicReducer'
-import {UserReducer} from './UserReducer'
+import {UserReducer} from './userReducer'
 import { playListReducer } from './playListReducer'
-import { AdminReducer } from './AdminReducer'
-import { FavouriteMusic } from './FavouriteReducer'
-import { OwnereMusic } from './OwnerMusic'
+import { AdminReducer } from './adminReducer'
+import { FavouriteMusic } from './favouriteReducer'
+import { OwnereMusic } from './ownerMusic'
 
 const rootReducer = combineReducers({
   musicReducer,

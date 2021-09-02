@@ -1,9 +1,9 @@
 import axios from "axios";
 import React ,{useState,useEffect} from "react"
 import {Button,Row} from 'react-bootstrap'
-import FooterMusicPlayer from "../components/FooterMusical";
-import FooterSelectMusic from "../components/FooterSelectMusic";
-import MusicCard from './MusicListIem'
+import FooterMusicPlayer from "./footerMusical";
+import FooterSelectMusic from "./footerSelectMusic";
+import MusicCard from './musicListIem'
 import {$authHost} from '../http/index'
 import {useDispatch,useSelector} from 'react-redux'
 import { useHistory } from "react-router-dom"

@@ -5,7 +5,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import {ListGroup} from 'react-bootstrap'
 import {deleteusers} from '../http/adminAPI'
 import './style/Admin.css'
-import AdminMusic from '../components/AdminMusic'
+import AdminMusic from '../components/adminMusic'
 function Admin() {
 
   const[isPlayList,setisPlayList] = useState(true)

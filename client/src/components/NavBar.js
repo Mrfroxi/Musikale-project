@@ -2,10 +2,10 @@ import React  from "react"
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
-import {Button, NavLink} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import { useHistory } from "react-router-dom"
 import {useSelector,useDispatch} from 'react-redux'
-import {MAIN_ROUTE,ADMIN_ROUTE,LOGIN_ROUTE,REGISTRATION_ROUTE} from '../utils/consts'
+import {MAIN_ROUTE,ADMIN_ROUTE,REGISTRATION_ROUTE} from '../utils/consts'
 
 const NavBar = () =>{
   const dispatch = useDispatch()

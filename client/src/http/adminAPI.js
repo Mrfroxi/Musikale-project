@@ -1,4 +1,4 @@
-import {$host,$authHost} from './index'
+import {$authHost} from './index'
 export const takeusers = async() =>{
   const {data} = await $authHost.get('api/user')
   return data

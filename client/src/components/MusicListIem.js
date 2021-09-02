@@ -3,10 +3,10 @@ import '../pages/style/MusicCard.scss'
 import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhite";
 import {useDispatch} from "react-redux";
 import {increaseTimesPlayed, setCurrentPlaying} from "../actions/actions";
-import Name from "./Name";
+import Name from "./name";
 import {Skeleton} from "@material-ui/lab";
 import Box from "@material-ui/core/Box";
-import FavouriteButton from './AddFavouriteButton'
+import FavouriteButton from './addFavouriteButton'
 function MusicCard(props) {
     const {name,img,id} = props.music;
 

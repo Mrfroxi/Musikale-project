@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row } from 'react-bootstrap';
 import {useSelector,useDispatch} from 'react-redux'
-import MusicCard from './MusicListIem'
+import MusicCard from './musicListIem'
 
 function MusicList() {
   const {playlists} = useSelector(state=> state.musicReducer)
