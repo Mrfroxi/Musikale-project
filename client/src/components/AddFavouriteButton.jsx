@@ -28,12 +28,12 @@ const FavouriteButton = (props) =>{
   }
 
   return isFav ?(
-    <Button className='addButton' onClick={(e) => DeleteMusic(e)}>
+    <Button className='addButton' onClick={ DeleteMusic }>
     /
     </Button>
 
   ):(
-    <Button className='addButton' onClick={(e) => addMusic(e)}>
+    <Button className='addButton' onClick={ addMusic }>
     +
     </Button>
   )

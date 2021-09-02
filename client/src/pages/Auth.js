@@ -18,6 +18,12 @@ const  Auth = () => {
     return state.UserReducer
   })
 
+	const isAuth = (localtoken) => {
+		if(localtoken){
+			return  login(email,password);
+		}
+		return  registration(email,password)
+	}
 
 	const signIn = async (e) =>{
 		e.preventDefault();

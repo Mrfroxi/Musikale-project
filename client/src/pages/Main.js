@@ -1,12 +1,9 @@
 import React, { useEffect,useState } from 'react'
-import {NavLink,useLocation} from 'react-router-dom'
 import MusicList from '../components/musicList'
 import Container from 'react-bootstrap/Container'
-import {Button} from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import {takeTrack,takeplayList} from '../http/trackAPI'
-import {useSelector,useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import FooterMusicPlayer from "../components/footerMusical";
 import FooterSelectMusic from "../components/footerSelectMusic";
 

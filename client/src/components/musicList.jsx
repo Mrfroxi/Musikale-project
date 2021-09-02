@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row } from 'react-bootstrap';
-import {useSelector,useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import MusicCard from './musicListIem'
 
 function MusicList() {

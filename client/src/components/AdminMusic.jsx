@@ -4,7 +4,7 @@ import {Button,Row} from 'react-bootstrap'
 import FooterMusicPlayer from "./footerMusical";
 import FooterSelectMusic from "./footerSelectMusic";
 import MusicCard from './musicListIem'
-import {$authHost} from '../http/index'
+import {authHost} from '../http/index'
 import {useDispatch,useSelector} from 'react-redux'
 import { useHistory } from "react-router-dom"
 
@@ -25,7 +25,7 @@ const AdminMusic = () =>{
     try{
     const data =  new FormData()
     data.append('song',newSong)
-    await $authHost.post('api/track',data,{
+    await authHost.post('api/track',data,{
       headers:{
         'content-type':'mulpipart/form-data'
       }
@@ -36,9 +36,9 @@ const AdminMusic = () =>{
     }
   },[newSong])
 
-  useEffect(() => {
+    useEffect(() => {
     setCurrMusic(playing)
-}, [playing])
+  }, [playing])
 
 
   return (
