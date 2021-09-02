@@ -17,7 +17,6 @@ const Track = sequelize.define("track" ,{
   id :{ type:DataTypes.INTEGER , primaryKey :true  , autoIncrement : true },
   name :{ type:DataTypes.STRING ,unique:true , allowNull :false },
   img:{ type:DataTypes.TEXT,allowNull :false },
-  timesPlayed:{ type:DataTypes.INTEGER,defaultValue :0 },
 })
 
 const FavouriteTrack = sequelize.define("FavouriteTrack" ,{

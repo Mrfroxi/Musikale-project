@@ -1,14 +1,13 @@
 const Router = require("express");
 
 const router = new Router();
-const FavtrackController = require("../controllers/FavtrackController");
-// const fileMiddleware = require("../middleware/multerMiddleware");
-const Guardmiddleware = require("../middleware/Guardmiddleware");
+const favtrackController = require("../controllers/favtrackController");
+const guardMiddleware = require("../middleware/guardmiddleware");
 
 
 
-router.post("/", FavtrackController.Add)
-router.get("/", FavtrackController.getAll);
-router.delete("/:id", Guardmiddleware("ADMIN"), FavtrackController.deleteFavouriteTrack);
+router.post("/", favtrackController.Add)
+router.get("/", favtrackController.getAll);
+router.delete("/:id", guardMiddleware("ADMIN"), favtrackController.deleteFavouriteTrack);
 
 module.exports = router;
