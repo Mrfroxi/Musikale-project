@@ -40,7 +40,7 @@ const AdminMusic = () =>{
     setCurrMusic(playing)
   }, [playing])
 
-
+  // console.log(tracks)
   return (
     <div className='AdminTracks'> 
     <div className ='panelPart'>
@@ -52,7 +52,7 @@ const AdminMusic = () =>{
       ?
       <Row className={"d-flex mt-4"}>
       {tracks.map((elem) => (
-        <MusicCard  key={elem.id} music={elem}/>
+        <MusicCard  key={elem.trackId} music={elem}/>
       ))}
     </Row> 
     :
@@ -61,7 +61,7 @@ const AdminMusic = () =>{
       <Button  variant = {"danger"} className = "btn" onClick={sendFile}>Отправить файл</Button>
       <Row className={"d-flex mt-4"}>
       {ownertracks.map((elem) => (
-        <MusicCard  key={elem.id} music={elem}/>
+        <MusicCard  key={elem.trackId} music={elem}/>
       ))}
     </Row>  
     </div>

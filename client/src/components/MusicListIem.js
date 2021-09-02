@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import FavouriteButton from './addFavouriteButton'
 function MusicCard(props) {
     const {name,img,id} = props.music;
+    // console.log( props.music)
 
     const [isHovered, setHovered] = useState(false);
 
