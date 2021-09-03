@@ -12,16 +12,23 @@ export const musicReducer = (state=defaultState,action ) =>{
         ...state, 
         playlists:[...action.allTrack] 
       }
-      case "SET_CURR_PLAYING":
+    case "SET_CURR_PLAYING":
           return {
               ...state,
               playing: action.payload
           }
-          case "SET_BANNER_OPEN":
+    case "SET_BANNER_OPEN":
             return {
                 ...state,
                 bannerOpen: action.payload
             };
+    case "ADD_NEW_TRACK":
+              return {
+                ...state,
+                playlists:[...state.playlists,action.track]
+              }        
+
+
         // case "INC_TIMES_PLAYED":
         //     return { 
         //       ...state, 

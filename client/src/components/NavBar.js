@@ -1,4 +1,4 @@
-import React  from "react"
+import React, { useState }  from "react"
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
@@ -12,7 +12,17 @@ const NavBar = () =>{
   const user = useSelector(state=> {
     return state.UserReducer
   })
+  const tracks = useSelector(state=> {
+    return state.musicReducer.playlists
+  })
   const history = useHistory()
+
+  const [inputValue , setinputValue] = useState('')
+
+  console.log(tracks)
+  const filteredTrack = tracks.filter( track => {
+    return track.name.toLowerCase().includes(inputValue.toLowerCase())
+  })
 
   return (
     <Navbar bg="dark" variant="dark">

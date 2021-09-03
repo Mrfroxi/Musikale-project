@@ -30,7 +30,11 @@ const AdminMusic = () =>{
         'content-type':'mulpipart/form-data'
       }
     })
-    .then(res => dispatch({type:"ADD_OWNER_TRACK" , track:res.data}))
+    .then( (res) =>  {
+      dispatch({type:"ADD_OWNER_TRACK" , track:res.data})
+      dispatch({type:'ADD_NEW_TRACK' ,track:res.data})
+    }
+    )
     }catch(e){
 
     }

@@ -20,8 +20,8 @@ const FavouriteButton = (props) =>{
 
   const addMusic = (e) => {
     e.stopPropagation()
-    const music = AllTrack.find(item => item.id === id);
-    AddtakeFavouriteTrack(id,name,img).then(() =>dispatch({type:"ADD_FAVOURITE_TRACK" ,track:music}))
+    const amusic = AllTrack.find(item => item.id === id);
+     AddtakeFavouriteTrack(id,name,img).then(() => dispatch({type:"ADD_FAVOURITE_TRACK" ,track:amusic}))
   }
   
   const DeleteMusic = (e) => {
@@ -29,6 +29,7 @@ const FavouriteButton = (props) =>{
     const music = favouriteTrack.find(item => item.id === id);
     if(music.trackId) {
       deleteFavouriteTrack(music.trackId).then(() =>dispatch({type:"DELETE_FAVOURITE_TRACK" ,track:music}))
+      return
     }
     deleteFavouriteTrack(id).then(() =>dispatch({type:"DELETE_FAVOURITE_TRACK" ,track:music}))
   }
