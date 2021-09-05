@@ -3,7 +3,7 @@ const defaultState = {
 }
 
 export const FavouriteMusic = (state=defaultState,action ) =>{
-  // console.log(action)
+
   switch(action.type){
     case "GET_ALL_FAVOURITE_TRACK":
     return {

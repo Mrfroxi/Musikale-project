@@ -7,17 +7,26 @@ import MusicCard from './musicListIem'
 import {authHost} from '../http/index'
 import {useDispatch,useSelector} from 'react-redux'
 import { useHistory } from "react-router-dom"
+import ModalMusic from "./modals/ownerMusic";
 
 const AdminMusic = () =>{
   const history = useHistory()
   const dispatch = useDispatch()
+
   const[isPlayList,setisPlayList] = useState(true)
+
+  const [ownerVisible,setownerVisible] = useState(false)
+
   const {tracks} = useSelector(state=> state.FavouriteMusic)
+
+
   const [currMusic, setCurrMusic] = useState(null);
+
   const ownertracks = useSelector(state=> {
     return state.OwnereMusic.tracks
   })
-  const {playing,playlists} = useSelector(state => state.musicReducer);
+  
+  const { playing } = useSelector(state => state.musicReducer);
 
   const[newSong,setnewSong] = React.useState(null)
 
@@ -36,7 +45,7 @@ const AdminMusic = () =>{
     }
     )
     }catch(e){
-
+      console.log(e)
     }
   },[newSong])
 
@@ -44,30 +53,36 @@ const AdminMusic = () =>{
     setCurrMusic(playing)
   }, [playing])
 
-  // console.log(tracks)
   return (
     <div className='AdminTracks'> 
     <div className ='panelPart'>
+      
       <Button onClick={() =>setisPlayList(true) }>Favourite</Button>
       <Button onClick={() =>setisPlayList(false) }> Your Track</Button>
+
+
     </div>
+
     {
       isPlayList
       ?
       <Row className={"d-flex mt-4"}>
       {tracks.map((elem) => (
-        <MusicCard  key={elem.trackId} music={elem}/>
+        <MusicCard  key={elem.id} music={elem}/>
       ))}
     </Row> 
     :
     <div>
+      
       <input type="file" onChange={(e) =>setnewSong(e.target.files[0])} />
       <Button  variant = {"danger"} className = "btn" onClick={sendFile}>Отправить файл</Button>
+      <Button onClick={() =>setownerVisible(true) }> closeOwnerTrack</Button>
       <Row className={"d-flex mt-4"}>
       {ownertracks.map((elem) => (
-        <MusicCard  key={elem.trackId} music={elem}/>
+        <MusicCard  key={elem.id} music={elem} closed={elem.closed}/>
       ))}
     </Row>  
+    <ModalMusic show={ownerVisible} handleClose={() => setownerVisible(false)}/>
     </div>
     }
         {

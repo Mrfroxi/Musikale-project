@@ -8,7 +8,7 @@ const FavouriteButton = (props) =>{
   const dispatch =  useDispatch()
 
   const {id,name,img} = props
-  // console.log(props)
+
   const[isFav,setIsFav] = useState(false)
   const AllTrack = useSelector(state => state.musicReducer.playlists)
   const favouriteTrack = useSelector(state => state.FavouriteMusic.tracks)

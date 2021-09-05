@@ -19,7 +19,7 @@ const NavBar = () =>{
 
   const [inputValue , setinputValue] = useState('')
 
-  console.log(tracks)
+
   const filteredTrack = tracks.filter( track => {
     return track.name.toLowerCase().includes(inputValue.toLowerCase())
   })

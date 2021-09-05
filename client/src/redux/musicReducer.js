@@ -26,7 +26,13 @@ export const musicReducer = (state=defaultState,action ) =>{
               return {
                 ...state,
                 playlists:[...state.playlists,action.track]
+              }  
+    case "CHANGE_TYPE_CL":
+      return {
+        ...state,
+        playlists: state.playlists.filter((value) => +value.id !== action.track.id)
               }        
+                  
 
 
         // case "INC_TIMES_PLAYED":

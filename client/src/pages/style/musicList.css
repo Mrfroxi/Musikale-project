@@ -3,7 +3,7 @@
   margin-bottom: 30px;
 }
 
-input {
+.musicListImput {
   font-size: 16px;
   padding: 10px;
   display: block;
@@ -11,7 +11,7 @@ input {
   border: none;
   border-bottom: 1px solid #ccc;
 }
-input:focus {
+.musicListImput:focus {
   outline: none;
 }
 label {
@@ -27,7 +27,7 @@ label {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label {
+.musicListImput:focus ~ label, .musicListImput:valid ~ label {
   top: -15px;
   font-size: 14px;
   color: #5264AE;
@@ -62,4 +62,31 @@ input:focus ~ label, input:valid ~ label {
 input:focus ~ .bar:before,
 input:focus ~ .bar:after {
   width: 50%;
+}
+
+.musicListImg{
+  max-width: 317px;
+  max-height: 211px;
+}
+.musicListImgBlock{
+  margin: 0 50px;
+  display: flex;
+  margin: 15px;
+}
+.musicListTextImg{
+  font-size: 27px;
+  margin: 15px;
+}
+@media (max-width: 555px) {
+  .musicListImgBlock {
+  flex-direction: column;
+  }
+  .musicListImg{
+    max-width: 243px;
+    max-height: 179px;
+  }
+  .musicListTextImg{
+    font-size: 27px;
+    margin:0px;
+  }
 }

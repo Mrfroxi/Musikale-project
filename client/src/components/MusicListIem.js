@@ -9,7 +9,6 @@ import Box from "@material-ui/core/Box";
 import FavouriteButton from './addFavouriteButton'
 function MusicCard(props) {
     const {name,img,id} = props.music;
-    // console.log( props.music)
 
     const [isHovered, setHovered] = useState(false);
 
@@ -47,6 +46,7 @@ function MusicCard(props) {
                             <img src={img} alt={name}/>
                             <div className="play-circle">
                                 <PlayCircleFilledWhiteIcon/>
+                                <FavouriteButton id={id} name={name} img={img}/>
                                 <FavouriteButton id={id} name={name} img={img}/>
                             </div>
                         </div>

@@ -1,0 +1,9 @@
+.ModalTrack{
+  display: flex;
+  flex-direction: row;
+  widows: 50px;
+  height: 60px;
+}
+.ModalTrackImg{
+  widows: 140px
+}
