@@ -3,7 +3,7 @@ import {Button, NavLink} from 'react-bootstrap'
 import {useSelector,useDispatch} from 'react-redux'
 import '../pages/style/addButton.css'
 import {AddtakeFavouriteTrack,deleteFavouriteTrack} from '../http/trackAPI'
-
+import {takeTrack} from '../http/trackAPI'
 const FavouriteButton = (props) =>{
   const dispatch =  useDispatch()
 
@@ -17,6 +17,12 @@ const FavouriteButton = (props) =>{
     const isFavourite = favouriteTrack.some((elem) => elem.id === id);
     setIsFav(isFavourite);
   },[favouriteTrack])
+  
+  useEffect(() => {
+    takeTrack().then(data => {
+      dispatch({type:'GET_ALL_PublicTrack' , allTrack:[...data.Publictracks]})
+    })
+  },[])
 
   const addMusic = (e) => {
     e.stopPropagation()

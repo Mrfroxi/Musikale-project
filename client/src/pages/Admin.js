@@ -6,6 +6,7 @@ import {ListGroup} from 'react-bootstrap'
 import {deleteusers} from '../http/adminAPI'
 import './style/Admin.css'
 import AdminMusic from '../components/adminMusic'
+import Categories from '../components/categories'
 function Admin() {
 
   const[isPlayList,setisPlayList] = useState(true)
@@ -19,26 +20,24 @@ function Admin() {
 
   return (
     <div className='Admin_div'>
-   <ListGroup className='ListGroup'>
-    <ListGroup.Item style = {{cursor:'pointer'}} onClick={() => setisPlayList(!isPlayList)}>Users</ListGroup.Item>
-    <ListGroup.Item style = {{cursor:'pointer'}} onClick={() => setisPlayList(!isPlayList)}>Your Music</ListGroup.Item>
-  </ListGroup>
-   <Container className='d-flex flex-row'>
-     {isPlayList 
-        ?
-        <ListGroup className='m-4'>
-        {user.map((elem) => (
-          <ListGroup.Item key={elem.id} > {elem.id}){elem.email} 
-                <Button variant = {"danger"} id={elem.id} onClick={(e) => DeleteUser(e.target.id)} style={{margin:6}  }>Delite</Button>
-          </ListGroup.Item>
-        ))}
-      </ListGroup> 
-      :
-      <AdminMusic/>
-    }
-
-
-   </Container>
+      <Categories 
+      
+      />
+    
+    <Container className='d-flex flex-row'>
+      {isPlayList 
+          ?
+          <ListGroup className='m-4'>
+          {user.map((elem) => (
+            <ListGroup.Item key={elem.id} > {elem.id}){elem.email} 
+                  <Button variant = {"danger"} id={elem.id} onClick={(e) => DeleteUser(e.target.id)} style={{margin:6}  }>Delite</Button>
+            </ListGroup.Item>
+          ))}
+        </ListGroup> 
+        :
+        <AdminMusic/>
+      }
+    </Container>
    </div>
   );
 }

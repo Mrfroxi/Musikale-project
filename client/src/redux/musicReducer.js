@@ -1,17 +1,24 @@
 const defaultState = {
   playlists:[],
+  publicTracks:[],
   playing:null,
   bannerOpen: false,
 }
 
 
 export const musicReducer = (state=defaultState,action ) =>{
+  console.log(action.musicId)
   switch(action.type){
     case "GET_ALL_Track":
       return {
         ...state, 
         playlists:[...action.allTrack] 
       }
+      case "GET_ALL_PublicTrack":
+        return {
+          ...state, 
+          publicTracks:[...action.allTrack] 
+        }
     case "SET_CURR_PLAYING":
           return {
               ...state,
@@ -27,19 +34,17 @@ export const musicReducer = (state=defaultState,action ) =>{
                 ...state,
                 playlists:[...state.playlists,action.track]
               }  
-    case "CHANGE_TYPE_CL":
+    case "DELETE_TYPE_CL":
       return {
         ...state,
-        playlists: state.playlists.filter((value) => +value.id !== action.track.id)
-              }        
-                  
-
-
-        // case "INC_TIMES_PLAYED":
-        //     return { 
-        //       ...state, 
-        //       playlists:[action.payload].timesPlayed +=1  
-        //     }
+        publicTracks: state.publicTracks.filter((value) => +value.id !== action.musicId)
+              }    
+    case "ADD_NEW_PUBLICTRACK":
+          return {
+          ...state,
+          publicTracks:[...state.publicTracks,action.publicMusic]
+            }                
+        
     default:
       return state
   }

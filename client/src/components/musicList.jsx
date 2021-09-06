@@ -1,17 +1,25 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Row } from 'react-bootstrap';
 import {useSelector} from 'react-redux'
 import MusicCard from './musicListIem'
 import '../pages/style/musicList.css'
 import logo from '../accets/magnifier.jpg'
-
+import {takeTrack} from '../http/trackAPI'
+import {useDispatch} from 'react-redux'
 function MusicList() {
-  const {playlists} = useSelector(state=> state.musicReducer)
-  
+  const dispatch = useDispatch()
+
+  const {publicTracks} = useSelector(state=> state.musicReducer)
+
   const [inputValue , setinputValue] = useState('')
 
+  useEffect(() => {
+    takeTrack().then(data => {
+      dispatch({type:'GET_ALL_PublicTrack' , allTrack:[...data.Publictracks]})
+    })
+  },[])
 
-  const filteredTrack = playlists.filter( track => {
+  const filteredTrack = publicTracks.filter( track => {
     return track.name.toLowerCase().includes(inputValue.toLowerCase())
   })
   

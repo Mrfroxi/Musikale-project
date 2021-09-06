@@ -5,7 +5,7 @@ export const createTrack = async(name) =>{
   return data
 }
 
-export const takeTrack = async(email,password) =>{
+export const takeTrack = async() =>{
   const {data} = await authHost.get('api/track')
   return data
 }
@@ -15,7 +15,7 @@ export const createplayList = async(name) =>{
   return data
 }
 
-export const takeplayList = async(email,password) =>{
+export const takeplayList = async() =>{
   const {data} = await authHost.get('api/playList')
   return data
 }
@@ -31,4 +31,7 @@ export const deleteFavouriteTrack = async(id) =>{
   const {data} = await authHost.delete('api/favouritetrack/'+id )
   return data
 }
-
+export const changeCloseTrack = async(status,id) =>{
+  const {data} = await authHost.put('api/track/'+id , {status})
+  return data
+}
