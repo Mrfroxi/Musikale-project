@@ -41,14 +41,20 @@ class TrackController{
         }
       const id_user = decoded.id
       const Ownertracks = await Track.findAll({ where:{  userId:id_user } })
+      const Publictracks = await Track.findAll({ where:{  closed:false } })
         const tracks = await Track.findAll()
-        return res.json({ tracks , Ownertracks })
+        return res.json({ tracks , Ownertracks ,Publictracks})
     }
-
-    async getOne(req,res){
+    async getChangeClosed(req,res){
         const { id } = req.params
-        const track = await Track.findOne({ where:{ id } })
-        return res.json(track)
+        const { status } = req.body
+        console.log(status)
+        const track = await Track.update({ closed: status }, {
+          where: {
+            id: id,
+          },
+        });
+        return res.json({ message:`id${track} good job ` })
     }
 
 
