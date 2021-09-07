@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import {Button} from 'react-bootstrap'
 import { useHistory } from "react-router-dom"
 import {useSelector,useDispatch} from 'react-redux'
-import {MAIN_ROUTE,ADMIN_ROUTE,REGISTRATION_ROUTE} from '../utils/consts'
+import {MAIN_ROUTE,ADMIN_ROUTE,REGISTRATION_ROUTE,ADMIN_ROUTE_MUSIC} from '../utils/consts'
 
 const NavBar = () =>{
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ const NavBar = () =>{
       </Nav>
       {user.__isAuth ? 
       <Nav className='ml-auto' >
-      <Button variant = {"outline-light"}  onClick={() => history.push(ADMIN_ROUTE)} style={{margin:4}  }>Admin</Button>
+      <Button variant = {"outline-light"}  onClick={() => history.push(ADMIN_ROUTE_MUSIC)} style={{margin:4}  }>Admin</Button>
       <Button variant = {"outline-light "} onClick={() => dispatch({type:'logOut'})} style={{margin:4} } >Exit</Button>
     </Nav>:
         <Nav className='ml-auto' >

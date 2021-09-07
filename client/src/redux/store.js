@@ -6,6 +6,7 @@ import { playListReducer } from './playListReducer'
 import { AdminReducer } from './adminReducer'
 import { FavouriteMusic } from './favouriteReducer'
 import { OwnereMusic } from './ownerMusic'
+import filtersReducer from './filters';
 
 const rootReducer = combineReducers({
   musicReducer,
@@ -13,6 +14,8 @@ const rootReducer = combineReducers({
   playListReducer,
   AdminReducer,
   FavouriteMusic,
-  OwnereMusic
+  OwnereMusic,
+  filtersReducer
+
 })
 export const  store = createStore(rootReducer, composeWithDevTools())

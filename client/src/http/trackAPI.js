@@ -10,15 +10,6 @@ export const takeTrack = async() =>{
   return data
 }
 
-export const createplayList = async(name) =>{
-  const {data} = await authHost.post('api/playList',name)
-  return data
-}
-
-export const takeplayList = async() =>{
-  const {data} = await authHost.get('api/playList')
-  return data
-}
 export const takeFavouriteTrack = async() =>{
   const {data} = await authHost.get('api/favouritetrack')
   return data

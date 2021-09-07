@@ -7,7 +7,6 @@ const defaultState = {
 
 
 export const musicReducer = (state=defaultState,action ) =>{
-  console.log(action.musicId)
   switch(action.type){
     case "GET_ALL_Track":
       return {

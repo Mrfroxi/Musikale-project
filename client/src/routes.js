@@ -1,8 +1,11 @@
-import {MAIN_ROUTE,LOGIN_ROUTE,REGISTRATION_ROUTE,ADMIN_ROUTE,  ADMIN_ROUTE_OWNER} from "./utils/consts"
+import {MAIN_ROUTE,LOGIN_ROUTE,REGISTRATION_ROUTE,ADMIN_ROUTE,PlayListItem} from "./utils/consts"
 import Auth from './pages/Auth'
 import Main from './pages/Main'
 import Admin from "./pages/Admin"
 import AdminMusic from "./components/adminMusic"
+import UsersList from "./components/usersList"
+import PlayLists from './components/adminPlayLists'
+import ElementPlayList from './components/trackInPlayList'
 export const authRoutes = [
   {
     path:LOGIN_ROUTE,
@@ -15,7 +18,7 @@ export const authRoutes = [
   {
     path:MAIN_ROUTE,
     Component:Main
-  }
+  },
 ]
 
 export const publicRoutes = [
@@ -35,8 +38,20 @@ export const publicRoutes = [
     path:MAIN_ROUTE,
     Component:Main
   },
-  // {
-  //   path: ADMIN_ROUTE_OWNER,
-  //   Component:AdminMusic
-  // },
+  {
+    path:'/admin/AdminMusic',
+    Component:AdminMusic
+  },
+  {
+    path:'/admin/Users',
+    Component:UsersList
+  },
+  {
+    path:'/admin/AdminPlayLists',
+    Component:PlayLists
+  },
+  {
+    path:PlayListItem + '/:id',
+    Component:ElementPlayList
+  }
 ]
