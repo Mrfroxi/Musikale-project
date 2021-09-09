@@ -3,7 +3,8 @@ import {Modal,Button,ListGroup} from 'react-bootstrap'
 import {useDispatch,useSelector} from 'react-redux'
 import ModalTrack from '../modalTrack'
 import PlayListTrack from '../modalPlayListTrack'
-const AllModalMusic = ({show,handleClose} ) => {
+
+const AllModalMusic = ({show,idPlayList,handleClose}) => {
   const allTrack = useSelector(state=> {
     return state.musicReducer.playlists
   })
@@ -21,8 +22,10 @@ const AllModalMusic = ({show,handleClose} ) => {
 
     <Modal.Body>
       {allTrack.map((elem) => {
-        return <PlayListTrack 
-        music={elem}/>
+        return <PlayListTrack key={elem.id}
+        music={elem}
+        idPlayList={idPlayList}
+        />
       })}
     </Modal.Body>
 

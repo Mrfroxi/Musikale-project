@@ -1,0 +1,15 @@
+.onwTrack{
+  display: flex;
+  flex-direction: column;
+
+}
+.block-dispatch{
+  display: flex;
+  flex-direction: row;
+}
+.ownerBlock{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}

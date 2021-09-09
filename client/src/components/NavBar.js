@@ -6,6 +6,8 @@ import {Button} from 'react-bootstrap'
 import { useHistory } from "react-router-dom"
 import {useSelector,useDispatch} from 'react-redux'
 import {MAIN_ROUTE,ADMIN_ROUTE,REGISTRATION_ROUTE,ADMIN_ROUTE_MUSIC} from '../utils/consts'
+import logo from '../accets/music-logo.png'
+import '../pages/style/Nav.css';
 
 const NavBar = () =>{
   const dispatch = useDispatch()
@@ -19,19 +21,34 @@ const NavBar = () =>{
 
   const [inputValue , setinputValue] = useState('')
 
-
   const filteredTrack = tracks.filter( track => {
     return track.name.toLowerCase().includes(inputValue.toLowerCase())
   })
 
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar className='NavBar' variant="dark" >
     <Container>
-      <Nav className="me-auto"><Button variant = {"info"}  onClick={() => history.push(MAIN_ROUTE)} style={{margin:4}  }>Main</Button>
+      <Nav className="NavBar_PartLogo">
+        <img src={logo} onClick={() => history.push(MAIN_ROUTE)} className='Nav-logo'/>
+        <div className='Nav_trackListBlock'>
+        <h5 className='Nav_trackListText'>Tracks</h5>
+          <ul className='Nav_trackList'>
+              <li className='Nav_trackListItem' onClick={() => history.push('/main/FavaouriteTrack')}>Favourite Track </li>
+              <li className='Nav_trackListItem' onClick={() => history.push('/main/YourTracks')}>Your Tracks</li>
+          </ul>
+      </div>
+      <div className='Nav_trackListBlock'>
+        <h5 className='Nav_trackListText'>PlayList</h5>
+          <ul className='Nav_trackList'>
+              <li className='Nav_trackListItem' onClick={() => history.push('/main/YourPlayList')}>Your PlayList</li>
+          </ul>
+      </div>
       </Nav>
+
       {user.__isAuth ? 
-      <Nav className='ml-auto' >
-      <Button variant = {"outline-light"}  onClick={() => history.push(ADMIN_ROUTE_MUSIC)} style={{margin:4}  }>Admin</Button>
+      <Nav className='' >
+      <Button variant = {"outline-light"}  onClick={() => history.push('/admin/Users')} style={{margin:4}  }>Admin</Button>
+
       <Button variant = {"outline-light "} onClick={() => dispatch({type:'logOut'})} style={{margin:4} } >Exit</Button>
     </Nav>:
         <Nav className='ml-auto' >

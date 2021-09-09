@@ -7,7 +7,6 @@ import {useSelector} from 'react-redux'
 import FooterMusicPlayer from "../components/footerMusical";
 import FooterSelectMusic from "../components/footerSelectMusic";
 
-
 function Main() {
   const [currMusic, setCurrMusic] = useState(null);
 
@@ -22,14 +21,10 @@ function Main() {
     <Container >
       Popular Tracks
     <Row>
-      <Col md={9}>
+      <Col md={12}>
         <audio/>
       <MusicList/>
       </Col>
-      <Col md={3}>
-
-      </Col>
-
     </Row>
   </Container>
   <React.Fragment>
