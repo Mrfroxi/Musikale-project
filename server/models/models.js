@@ -25,6 +25,13 @@ const FavouriteTrack = sequelize.define("FavouriteTrack" ,{
   name :{ type:DataTypes.STRING , allowNull :false },
   img:{ type:DataTypes.TEXT,allowNull :false },
 })
+const PlayListTrack = sequelize.define("PlayListTrack" ,{
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  nameTrack :{ type:DataTypes.STRING , allowNull :false },
+  namePlayList :{ type:DataTypes.STRING },
+  img:{ type:DataTypes.TEXT,allowNull :false },
+})
+
 
 User.hasMany(Track);
 Track.belongsTo(User);
@@ -32,8 +39,8 @@ Track.belongsTo(User);
 User.hasMany(PlayList);
 PlayList.belongsTo(User);
 
-PlayList.belongsToMany(Track, { through: "PlayListTrack" });
-Track.belongsToMany(PlayList, { through: "PlayListTrack" });
+PlayList.belongsToMany(Track, { through: PlayListTrack });
+Track.belongsToMany(PlayList, { through: PlayListTrack });
 
 User.belongsToMany(Track, { through: FavouriteTrack });
 Track.belongsToMany(User, { through: FavouriteTrack });
@@ -46,4 +53,5 @@ module.exports = {
   PlayList,
   Track,
   FavouriteTrack,
+  PlayListTrack,
 };

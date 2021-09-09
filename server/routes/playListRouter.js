@@ -9,6 +9,6 @@ const guardmiddleware = require("../middleware/guardmiddleware");
 router.post("/", playListController.create);
 router.get("/", playListController.getAll);
 router.get("/:id", playListController.getOne);
-router.delete("/:id", guardmiddleware("ADMIN"), playListController.deleteUser);
+router.delete("/:id", guardmiddleware("ADMIN"), playListController.deletePlayList);
 
 module.exports = router;

@@ -31,7 +31,7 @@ class PlayListController {
     return res.json(playList);
   }
 
-  async deleteUser(req, res) {
+  async deletePlayList(req, res) {
     const { id } = req.params;
     try {
       const playList = await PlayList.findOne({ where: { id } });
