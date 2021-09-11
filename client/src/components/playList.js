@@ -1,13 +1,12 @@
 import React,{ useEffect,useState } from 'react'
-import Container from 'react-bootstrap/Container'
-import {Button, Card, Col, NavLink} from 'react-bootstrap'
-import {useSelector,useDispatch} from 'react-redux'
-import {ListGroup} from 'react-bootstrap'
+import { Card, Col} from 'react-bootstrap'
+import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {PLAYLIST_ITEM} from '../utils/consts'
-
+import  '../pages/style/playList.css'
 function PlayList(props) {
-  const{id,name} = props
+  const{id,name,img} = props
+  console.log(props)
   const history = useHistory()
   const dispatch = useDispatch()
   const selectedPlayList = () => {
@@ -15,10 +14,10 @@ function PlayList(props) {
     history.push(PLAYLIST_ITEM+'/'+id)
   }
   return (
-      <Col md={3} onClick={selectedPlayList} className="">
+      <Col className="PlayLIstCol" md={3} onClick={selectedPlayList}>
         <Card style={{width:150,cursor:'pointer'}} border={"light"}>
-          <div>
-            <img src=""/>
+          <div className="PlayLIstBlock">
+            <img className="PlayLIstImg" src={process.env.REACT_APP_API_URL + img}/>
             {name}
           </div>
         </Card>

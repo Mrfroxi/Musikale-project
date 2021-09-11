@@ -20,7 +20,6 @@ const PlayListTrack = ({music,idPlayList}) => {
     AddlayTrackLists(idPlayList,name,img,id,fr).then(()=>dispatch({type:"SET_SECLECT_TRACK",selectTrack:music}))
   }
   const deleteToPlayList = (e) =>{
-    console.log(`${idPlayList} %${id}`)
     e.preventDefault()
     setinPlayList(false)
     DeleteTrackLists(idPlayList,id).then(()=>dispatch({type:"DELETE_SECLECT_TRACK",trackId:id}))

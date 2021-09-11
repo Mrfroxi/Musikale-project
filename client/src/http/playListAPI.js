@@ -25,3 +25,7 @@ export const DeleteTrackLists = async(playListId,trackId) =>{
   }})
   return data
 }
+export const createPlaylist = async(playList) =>{
+  const {data} = await authHost.post('api/playList', playList)
+  return data
+}
