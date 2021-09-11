@@ -1,6 +1,8 @@
 const { PlayList } = require("../models/models");
 // const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const path = require("path")
+const uuid = require("uuid")
 class PlayListController {
   async create(req, res) {
     try {
@@ -13,7 +15,11 @@ class PlayListController {
           }
           const id_user = decoded.id
       const { name } = req.body;
-      const playList = await PlayList.create({ name:name , userId:id_user });
+      console.log(req)
+      const { img } = req.files
+      let fileName = uuid.v4()+".jpg"
+      img.mv(path.resolve(__dirname,"..","image",fileName))
+      const playList = await PlayList.create({ name:name , userId:id_user , img:fileName });
       res.json(playList);
     } catch (e) {
       console.log(e);

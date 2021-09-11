@@ -11,6 +11,7 @@ const User = sequelize.define("user", {
 const PlayList = sequelize.define("playList", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING },
+  img:{ type:DataTypes.STRING,allowNull :false },
 });
 
 const Track = sequelize.define("track" ,{

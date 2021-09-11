@@ -10,6 +10,7 @@ const util = require('util');
 class TrackController{
     async  create(req,res){
         try{
+          console.log(req)
           let authorization = req.headers.authorization.split(" ")[1],
           decoded;
             try {
@@ -22,7 +23,6 @@ class TrackController{
           const data = metadata.common.picture[0].data
           const img_base64 = `data:${format};base64,${Buffer.from(data).toString('base64')}`
             const id_user = decoded.id
-          console.log(req)
             const{ filename } =req.file
             const track = await Track.create({ name:filename ,userId:id_user ,img:img_base64 })
             return res.json(track)

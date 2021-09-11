@@ -14,6 +14,7 @@ const app = express();
 app.use(cors()); // Cors для всех
 app.use(express.json()); // Парсить json
 app.use("/song", express.static(path.join(__dirname, "song")));
+app.use(express.static(path.join(__dirname, "image")));
 app.use(morgan("dev"));
 app.use("/api", router);
 
