@@ -58,7 +58,7 @@ class TrackController{
     }
 
 
-  async deleteUser(req, res) {
+  async deleteTrack(req, res) {
     const { id } = req.params;
     try {
       const track = await Track.findOne({ where: { id } });
