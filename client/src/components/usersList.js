@@ -1,4 +1,4 @@
-import React,{ useEffect,useState } from 'react'
+import React from 'react'
 import {Button, NavLink} from 'react-bootstrap'
 import {useSelector,useDispatch} from 'react-redux'
 import {ListGroup} from 'react-bootstrap'
@@ -8,8 +8,6 @@ import '../pages/style/user.css'
 
 
 function UsersList() {
-
-  const history = useHistory()
   const dispatch = useDispatch()
   const user = useSelector(state=> {
     return state.AdminReducer
@@ -17,7 +15,7 @@ function UsersList() {
   const DeleteUser = (id) => {
     deleteusers(id).then(()=>dispatch({type:'DELETE_USER',id}))
   }
-
+  console.log(user)
   return (
       <div className='User_div'>
         <ListGroup className='User_block_List'>

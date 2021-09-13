@@ -4,7 +4,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import '../pages/style/addButton.css'
 import {AddtakeFavouriteTrack,deleteFavouriteTrack} from '../http/trackAPI'
 import {takeTrack} from '../http/trackAPI'
-const FavouriteButton = (props) =>{
+const FavouriteButton = React.memo((props) =>{
   const dispatch =  useDispatch()
 
   const {id,name,img} = props
@@ -18,11 +18,11 @@ const FavouriteButton = (props) =>{
     setIsFav(isFavourite);
   },[favouriteTrack])
   
-  useEffect(() => {
-    takeTrack().then(data => {
-      dispatch({type:'GET_ALL_PublicTrack' , allTrack:[...data.Publictracks]})
-    })
-  },[])
+  // useEffect(() => {
+  //   takeTrack().then(data => {
+  //     dispatch({type:'GET_ALL_PublicTrack' , allTrack:[...data.Publictracks]})
+  //   })
+  // },[])
 
   const addMusic = (e) => {
     e.stopPropagation()
@@ -51,5 +51,5 @@ const FavouriteButton = (props) =>{
     </Button>
   )
 }
-
+)
 export default FavouriteButton

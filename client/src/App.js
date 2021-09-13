@@ -15,7 +15,6 @@ function App() {
       dispatch({type:'GET_ALL_Track' , allTrack:[...data.tracks]})
     }
     )
-    takeusers().then(data =>dispatch({type:'GET_ALL_USERS' , allUser:[...data]}))
     takeFavouriteTrack().then(data => dispatch({type:'GET_ALL_FAVOURITE_TRACK' , tracks:[...data]}))
     takeusers().then(data =>dispatch({type:'GET_ALL_USERS' , allUser:[...data]}))
     takeplayLists().then(data =>dispatch({type:'GET_ALL_PlayList' , allplayList:[...data]}))

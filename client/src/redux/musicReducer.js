@@ -42,7 +42,12 @@ export const musicReducer = (state=defaultState,action ) =>{
           return {
           ...state,
           publicTracks:[...state.publicTracks,action.publicMusic]
-            }                
+            }
+    case "DELETE_TRACK":
+          return {
+          ...state, 
+          playlists: state.playlists.filter((value) => +value.id !== +action.id )
+            }                   
         
     default:
       return state

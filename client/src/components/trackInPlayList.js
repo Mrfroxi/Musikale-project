@@ -10,7 +10,6 @@ import '../pages/style/MusicInPlayList.css'
 
 function ElementPlayList(props) {
   const id = props.match.params.id
-  const history = useHistory()
   const dispatch = useDispatch()
 
   useEffect (() => {

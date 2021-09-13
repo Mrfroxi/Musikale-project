@@ -9,6 +9,7 @@ import OwnerTrack from './components/ownerTrack'
 import PersonMusic from './components/personMusic'
 import PlayLists from './components/mainPlayLists'
 import MainPlayLists from './components/mainPlayLists'
+import AdminTracksList from './components/admintracks'
 export const authRoutes = [
   {
     path:LOGIN_ROUTE,
@@ -64,5 +65,9 @@ export const publicRoutes = [
   {
     path: PLAYLIST_ITEM + '/:id',
     Component:ElementPlayList
+  },
+  {
+    path:'/admin/AdminTracks',
+    Component:AdminTracksList
   }
 ]

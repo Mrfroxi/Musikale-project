@@ -46,9 +46,14 @@ const NavBar = () =>{
       </Nav>
 
       {user.__isAuth ? 
-      <Nav className='' >
-      <Button variant = {"outline-light"}  onClick={() => history.push('/admin/Users')} style={{margin:4}  }>Admin</Button>
-
+      <Nav >
+        <div className='Nav_trackListBlock'>
+        <Button variant = {"outline-light"}  style={{margin:4}  }>Admin</Button>
+          <ul className='Nav_trackList'>
+              <li className='Nav_trackListItem' onClick={() => history.push('/admin/Users')}> Users</li>
+              <li className='Nav_trackListItem' onClick={() => history.push('/admin/AdminTracks')}> All Tracks</li>
+          </ul>
+      </div>
       <Button variant = {"outline-light "} onClick={() => dispatch({type:'logOut'})} style={{margin:4} } >Exit</Button>
     </Nav>:
         <Nav className='ml-auto' >

@@ -26,3 +26,8 @@ export const changeCloseTrack = async(status,id) =>{
   const {data} = await authHost.put('api/track/'+id , {status})
   return data
 }
+export const deleteTrack = async(id) =>{
+  console.log(id)
+  const {data} = await authHost.delete('api/track/'+id )
+  return data
+}
