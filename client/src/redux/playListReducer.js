@@ -10,7 +10,7 @@ export const playListReducer = (state=defaultState,action ) =>{
     case "GET_ALL_PlayList":
       return {
         ...state,
-        playList:[...state.playList,...action.allplayList]
+        playList:[...action.allplayList]
       }
     case "GET_ALL_PlayList_Track":
       return {
@@ -38,6 +38,11 @@ export const playListReducer = (state=defaultState,action ) =>{
           ...state,
           selectPlayListName:action.name
         }
+        case "ADD_NEW_PLAYLIST":
+          return {
+            ...state,
+            playList:[...state.playList,action.newPlaylist]
+          }
     default:
       return state
   }

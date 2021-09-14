@@ -31,3 +31,11 @@ export const deleteTrack = async(id) =>{
   const {data} = await authHost.delete('api/track/'+id )
   return data
 }
+export const takeInputTrack = async(text,type) =>{
+  const {data} = await authHost.post('api/track/search',{text,type})
+  return data
+}
+export const takeInputFavTracks = async(text) =>{
+  const {data} = await authHost.post('api/favouritetrack/search',{text})
+  return data
+}

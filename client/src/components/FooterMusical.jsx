@@ -32,7 +32,7 @@ function FooterMusicPlayer({music}) {
 
     const audioElement = useRef();
     const dispatch = useDispatch();
-    const {playlists} = useSelector(state => state.musicReducer);
+    const {publicTracks} = useSelector(state => state.musicReducer);
     const useStyle = useContext(ThemeContext);
     const pointer = { cursor: "pointer",  color: useStyle.theme };
 
@@ -111,19 +111,19 @@ function FooterMusicPlayer({music}) {
 
     useEffect(()=>{
         if (isNextClicked){
-            let currTrackId = (id+1) % playlists.length;
-            dispatch(setCurrentPlaying(playlists[currTrackId]));
+            let currTrackId = (id+1) % publicTracks.length;
+            dispatch(setCurrentPlaying(publicTracks[currTrackId]));
             setNextClicked(false);
         }
         if (isPrevClicked){
-            let currTrackId = (id-1) % playlists.length;
+            let currTrackId = (id-1) % publicTracks.length;
             if ((id-1)<0){
-                currTrackId = playlists.length - 1;
+                currTrackId = publicTracks.length - 1;
             }
-            dispatch(setCurrentPlaying(playlists[currTrackId]));
+            dispatch(setCurrentPlaying(publicTracks[currTrackId]));
             setPrevClicked(false);
         }
-    },[dispatch, id, isNextClicked, isPrevClicked, playlists]);
+    },[dispatch, id, isNextClicked, isPrevClicked, publicTracks]);
 
 
     function formatTime(secs) {

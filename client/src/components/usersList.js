@@ -15,7 +15,7 @@ function UsersList() {
   const DeleteUser = (id) => {
     deleteusers(id).then(()=>dispatch({type:'DELETE_USER',id}))
   }
-  console.log(user)
+
   return (
       <div className='User_div'>
         <ListGroup className='User_block_List'>

@@ -6,7 +6,6 @@ import {PLAYLIST_ITEM} from '../utils/consts'
 import  '../pages/style/playList.css'
 function PlayList(props) {
   const{id,name,img} = props
-  console.log(props)
   const history = useHistory()
   const dispatch = useDispatch()
   const selectedPlayList = () => {

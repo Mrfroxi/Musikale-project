@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 import MusicCard from './musicListIem'
 import '../pages/style/musicList.css'
 import logo from '../accets/magnifier.jpg'
-import {takeTrack} from '../http/trackAPI'
+import {takeTrack, takeInputTrack} from '../http/trackAPI'
 import {useDispatch} from 'react-redux'
 function MusicList() {
   const dispatch = useDispatch()
@@ -18,8 +18,11 @@ function MusicList() {
       dispatch({type:'GET_ALL_PublicTrack' , allTrack:[...data.Publictracks]})
     })
   },[])
+  useEffect(() => {
+    takeInputTrack(inputValue,false).then(data => dispatch({type:'GET_ALL_PublicTrack' , allTrack:[...data.tracks]}))
+  },[inputValue])
 
-  const filteredTrack = publicTracks.filter( track => {
+  const filteredTrack =  publicTracks.filter( track => {
     return track.name.toLowerCase().includes(inputValue.toLowerCase())
   })
   

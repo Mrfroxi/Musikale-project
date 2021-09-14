@@ -25,6 +25,12 @@ const NavBar = () =>{
     return track.name.toLowerCase().includes(inputValue.toLowerCase())
   })
 
+  const LogOut = () => {
+    history.push(REGISTRATION_ROUTE)
+    dispatch({type:'logOut'})
+  
+  }
+
   return (
     <Navbar className='NavBar' variant="dark" >
     <Container>
@@ -54,7 +60,7 @@ const NavBar = () =>{
               <li className='Nav_trackListItem' onClick={() => history.push('/admin/AdminTracks')}> All Tracks</li>
           </ul>
       </div>
-      <Button variant = {"outline-light "} onClick={() => dispatch({type:'logOut'})} style={{margin:4} } >Exit</Button>
+      <Button variant = {"outline-light "} onClick={LogOut} style={{margin:4} } >Exit</Button>
     </Nav>:
         <Nav className='ml-auto' >
         <Button variant = {"outline-light"}  onClick = {() =>  history.push(REGISTRATION_ROUTE) }>registration</Button>

@@ -12,7 +12,6 @@ function ModalCreatePlayList({show,handleClose} ) {
   const [file,setfile] = useState("")
 
   const selectFile = (e) => {
-    console.log(e.target.files[0])
     setfile(e.target.files[0])
   }
 
@@ -20,7 +19,10 @@ function ModalCreatePlayList({show,handleClose} ) {
     const formData = new FormData()
     formData.append('name',name)
     formData.append('img',file)
-    createPlaylist(formData).then(data => handleClose())
+    createPlaylist(formData).then(data => {
+      handleClose()
+      dispatch({type:"ADD_NEW_PLAYLIST",newPlaylist:data})
+    })
   }
   return (
     <Modal 
@@ -35,6 +37,7 @@ function ModalCreatePlayList({show,handleClose} ) {
     <Modal.Body>
       <p>PlayList name:</p>
       <Form.Control value={name} onChange={e=>setName(e.target.value)} className="mt-3" placeholder="write the name of the playlist"/>
+      <p>PlayList photo:</p>
       <Form.Control className="mt-3" type="file"  onChange={selectFile}/>
       <Button onClick={addDevice}  >Add</Button>
     </Modal.Body>
