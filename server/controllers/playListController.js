@@ -3,6 +3,8 @@ const { PlayList } = require("../models/models");
 const jwt = require("jsonwebtoken");
 const path = require("path")
 const uuid = require("uuid")
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 class PlayListController {
   async create(req, res) {
     try {
@@ -40,6 +42,24 @@ class PlayListController {
     const playList = await PlayList.findAll({ where:{ userId:id_user } });
     return res.json(playList);
   }
+  async getInputAll(req, res) {
+    console.log(1)
+    let authorization = req.headers.authorization.split(" ")[1],
+    decoded;
+      try {
+          decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+      } catch (e) {
+          return res.status(401).send("unauthorized");
+      }
+    const id_user = decoded.id
+    const{ text } = req.body
+    const playList = await PlayList.findAll({ where:{  [Op.and]: [
+    { userId: id_user },
+    { name: { [Op.like]: `${text}%` } },
+  ],
+} });
+  return res.json({ playList });
+}
 
   async getOne(req, res) {
     const { id } = req.params;

@@ -1,6 +1,8 @@
 const { FavouriteTrack } = require("../models/models");
 
 const jwt = require("jsonwebtoken");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 
 class FavouriteTrackController{
@@ -33,6 +35,28 @@ class FavouriteTrackController{
         const tracks = await FavouriteTrack.findAll({ where:{  userId:id_user } })
         return res.json(tracks)
     }
+    async getInputAll(req,res){
+      try{
+        let authorization = req.headers.authorization.split(" ")[1],
+        decoded;
+          try {
+              decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+          } catch (e) {
+              return res.status(401).send("unauthorized");
+          }
+      const id_user = decoded.id
+      const { text } = req.body
+        const tracks = await FavouriteTrack.findAll({   where: {
+          [Op.and]: [
+            { userId: id_user },
+            { name: { [Op.like]: `${text}%` } },
+          ],
+        } })
+        return res.json({ tracks })
+      }catch(e){
+        console.log(e)
+      }
+  }
   async deleteFavouriteTrack(req, res) {
     const { id } = req.params;
     try {

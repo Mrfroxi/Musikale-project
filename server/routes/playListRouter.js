@@ -6,6 +6,7 @@ const playListController = require("../controllers/playListController");
 const fileMiddleware = require("../middleware/multerMiddleware");
 const guardmiddleware = require("../middleware/guardmiddleware");
 router.post("/",fileUpload({}) ,playListController.create);
+router.post("/search",playListController.getInputAll);
 router.get("/", playListController.getAll);
 router.get("/:id", playListController.getOne);
 router.delete("/:id", guardmiddleware("ADMIN"), playListController.deletePlayList);

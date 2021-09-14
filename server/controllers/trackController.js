@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const mm = require('music-metadata');
 // eslint-disable-next-line no-unused-vars
 const util = require('util');
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 
 class TrackController{
@@ -43,7 +45,7 @@ class TrackController{
       const Ownertracks = await Track.findAll({ where:{  userId:id_user } })
       const Publictracks = await Track.findAll({ where:{  closed:false } })
         const tracks = await Track.findAll()
-        return res.json({ tracks , Ownertracks ,Publictracks})
+        return res.json({ tracks , Ownertracks ,Publictracks })
     }
     async getChangeClosed(req,res){
         const { id } = req.params
@@ -56,8 +58,12 @@ class TrackController{
         });
         return res.json({ message:`id${track} good job ` })
     }
-
-
+    async getMainInputTracks(req,res){
+      const { text ,type } = req.body
+      console.log(req.body)
+      const tracks = await Track.findAll({ where:{ name: { [Op.like]: `${text}%` } , closed:type } })
+      return res.json({ tracks })
+  }
   async deleteTrack(req, res) {
     const { id } = req.params;
     try {
