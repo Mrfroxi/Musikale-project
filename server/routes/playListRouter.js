@@ -7,6 +7,7 @@ const fileMiddleware = require("../middleware/multerMiddleware");
 const guardmiddleware = require("../middleware/guardmiddleware");
 router.post("/",fileUpload({}) ,playListController.create);
 router.post("/search",playListController.getInputAll);
+router.put("/changeName", playListController.changeName);
 router.get("/", playListController.getAll);
 router.get("/:id", playListController.getOne);
 router.delete("/:id", guardmiddleware("ADMIN"), playListController.deletePlayList);

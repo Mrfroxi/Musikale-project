@@ -66,6 +66,16 @@ class PlayListController {
     const playList = await PlayList.findOne({ where: { id } });
     return res.json(playList);
   }
+  async changeName(req, res) {
+    const { name ,id } = req.body;
+    console.log(id ,name)
+    const playList = await PlayList.update({ name: name }, {
+      where: {
+        id: id,
+      },
+    });
+    return res.json({ message:`name change good job${playList} ` });
+  }
 
   async deletePlayList(req, res) {
     const { id } = req.params;
