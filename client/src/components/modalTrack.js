@@ -35,7 +35,9 @@ const ModalTrack = ({music}) => {
               isPublic?
               <Button onClick={SetclosedTrue}> +</Button>
               :
-              <Button onClick={Setclosed}> /</Button>
+              <Button onClick={Setclosed} style={{color:'#0088ff'}}> 
+                /
+              </Button>
             }
     </div>
   )

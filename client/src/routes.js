@@ -2,7 +2,6 @@ import {MAIN_ROUTE,LOGIN_ROUTE,REGISTRATION_ROUTE,ADMIN_ROUTE,PLAYLIST_ITEM} fro
 import Auth from './pages/Auth'
 import Main from './pages/Main'
 import Admin from "./pages/Admin"
-import AdminMusic from "./components/adminMusic"
 import UsersList from "./components/usersList"
 import ElementPlayList from './components/trackInPlayList'
 import OwnerTrack from './components/ownerTrack'

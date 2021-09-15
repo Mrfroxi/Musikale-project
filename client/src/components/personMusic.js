@@ -6,6 +6,7 @@ import MusicCard from './musicListIem'
 import {useSelector} from 'react-redux'
 import {takeInputFavTracks} from '../http/trackAPI'
 import {useDispatch} from 'react-redux'
+import '../pages/style/favouritetracks.css'
 const PersonMusic = () =>{
   const dispatch = useDispatch()
   const {tracks} = useSelector(state=> state.FavouriteMusic)
@@ -26,18 +27,22 @@ const PersonMusic = () =>{
 
   return (
    
-    <div className='AdminTracks'> 
-        <div class="musicListGroup">      
+    <div className='FavouriteTracks'> 
+        <div class="musicListGroup">  
+        <h3 class="FavouriteTracksName"> Search Favourite Tracks:</h3>    
+        <div class="FavInput">
         <input 
           className="musicListImput"
           type="text" 
-          placeholder="look for music"
+          placeholder="look for Favourite music"
           onChange={(event) => setinputValue(event.target.value)}
           />
           <span class="bar"></span>
           <label></label>
         </div>
+        </div>
       <Row className={"d-flex mt-4"}>
+      <h4 class="FavouriteTracksName"> Favourite Tracks:</h4>
       {tracks.map((elem) => (
         <MusicCard  key={elem.id} music={elem}/>
       ))}

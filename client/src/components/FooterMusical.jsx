@@ -18,7 +18,8 @@ import {setBannerOpen, setCurrentPlaying} from "../actions/actions";
 import Button from "@material-ui/core/Button";
 
 function FooterMusicPlayer({music}) {
-    const [{id, name, img}, setCurrTrack] = useState(music);
+    console.log(music)
+    const [{id, name, img,nameTrack}, setCurrTrack] = useState(music);
     const [isRepeatClicked, setRepeatClick] = useState(false);
     const [isPrevClicked, setPrevClicked] = useState(false);
     const [isNextClicked, setNextClicked] = useState(false);
@@ -149,7 +150,12 @@ function FooterMusicPlayer({music}) {
                     onClick={handleBannerToggle}
                     className="curr-music-container">
                 <div className="curr-music-details">
-                    <Name name={name} className={"song-name"} length={name.length}/>
+                    {
+                        name?
+                        <Name name={name} className={"song-name"} length={name.length}/>
+                        :
+                        <Name name={nameTrack} className={"song-name"} length={nameTrack.length}/>
+                    }
                 </div>
             </Button>
             <div className="playback-controls">
@@ -163,8 +169,12 @@ function FooterMusicPlayer({music}) {
                                       defaultIcon={<SkipPreviousIcon fontSize={"large"}/>}
                                       changeIcon={<SkipPreviousIcon fontSize={"large"}/>}
                                       onClicked={handleToggle}/>
-
-<audio ref={audioElement} src={require(`../../../server/song/${name}` ).default} preload={"metadata"}/>
+     {
+                        name?
+                        <audio ref={audioElement} src={require(`../../../server/song/${name}` ).default} preload={"metadata"}/>
+                        :
+                        <audio ref={audioElement} src={require(`../../../server/song/${nameTrack}` ).default} preload={"metadata"}/>
+                    }
 
                 <ControlsToggleButton style={pointer} type={"play-pause"}
                                       defaultIcon={<PlayArrowIcon fontSize={"large"}/>}

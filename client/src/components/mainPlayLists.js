@@ -5,22 +5,27 @@ import PlayList from './playList'
 import ModalCreatePlayList from './modals/createPlayList'
 import '../pages/style/mainPlaylist.css'
 import {takeInputplayListLists} from '../http/playListAPI'
+import ModalChangePlayListName from './modals/modalChangeNamePlayList'
 function MainPlayLists() {
   const dispatch = useDispatch()
 
   const [ownerVisible,setownerVisible] = useState(false)
   const [inputValue , setinputValue] = useState('')
+  const [idPlayList , setIdPlayList] =useState('')
+  const [NameownerVisible,setNameownerVisible] = useState(false)
 
   useEffect(() => {
    takeInputplayListLists(inputValue).then(data => dispatch({type:'GET_ALL_PlayList' , allplayList:[...data.playList]}))
   },[inputValue])
 
   // const { playing } = useSelector(state => state.musicReducer);
-
   //   useEffect(() => {
   //   setCurrMusic(playing)
   // }, [playing])
+
+
   const playLists = useSelector(state=> state.playListReducer.playList)
+
 
   return (
     <>
@@ -29,17 +34,20 @@ function MainPlayLists() {
           <input 
             className="musicListImput"
             type="text" 
-            placeholder="look for music"
+            placeholder="look for Playlists"
             onChange={(event) => setinputValue(event.target.value)}
             />
             <span class="bar"></span>
             <label></label>
           </div>
+            <h3 class="PlayListMainText">Your playLists</h3>
             <Button onClick={() =>setownerVisible(true) }> create new PlayList </Button>
         </div>
       <div className='MainPlayList'>
       {playLists.map((elem) => {
           return <PlayList 
+          handleOpen={() => setNameownerVisible(true)}
+          changeId={(id) =>setIdPlayList(id)}
           key={elem.id}
           img={elem.img}
           name={elem.name}
@@ -47,6 +55,7 @@ function MainPlayLists() {
           />
       })}
         <ModalCreatePlayList show={ownerVisible} handleClose={() => setownerVisible(false)}/>
+        <ModalChangePlayListName id={idPlayList} show={NameownerVisible} handleClose={() => setNameownerVisible(false)}/>
     </div>
     </>
   );

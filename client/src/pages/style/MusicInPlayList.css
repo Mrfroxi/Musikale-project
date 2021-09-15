@@ -15,3 +15,6 @@ border-radius: 10px;
   width: 100px;
   height: 100px;
 }
+.PlayList_Track:hover{
+  cursor: pointer;
+}

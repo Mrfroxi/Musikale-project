@@ -39,7 +39,7 @@ const NavBar = () =>{
         <div className='Nav_trackListBlock'>
         <h5 className='Nav_trackListText'>Tracks</h5>
           <ul className='Nav_trackList'>
-              <li className='Nav_trackListItem' onClick={() => history.push('/main/FavaouriteTrack')}>Favourite Track </li>
+              <li className='Nav_trackListItem' onClick={() => history.push('/main/FavaouriteTrack')}>Favourite Tracks </li>
               <li className='Nav_trackListItem' onClick={() => history.push('/main/YourTracks')}>Your Tracks</li>
           </ul>
       </div>

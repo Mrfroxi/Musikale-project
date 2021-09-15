@@ -10,11 +10,11 @@ import FavouriteButton from './addFavouriteButton'
 function MusicCard(props) {
     const {name,img,id} = props.music;
 
-    const [isHovered, setHovered] = useState(false);
+    // const [isHovered, setHovered] = useState(false);
 
-    function handleResponse() {
-        setHovered(!isHovered);
-    }
+    // function handleResponse() {
+    //     setHovered(!isHovered);
+    // }
 
     const dispatch = useDispatch();
 
@@ -42,11 +42,12 @@ function MusicCard(props) {
                 </div>
                     :
                     <>
-                        <div onClick={handlePlay}  className={"music-card-cover"} onMouseOver={handleResponse}>
+                        <div onClick={handlePlay}  className={"music-card-cover"} 
+                        // onMouseOver={handleResponse}
+                        >
                             <img src={img} alt={name}/>
                             <div className="play-circle">
                                 <PlayCircleFilledWhiteIcon/>
-                                <FavouriteButton id={id} name={name} img={img}/>
                                 <FavouriteButton id={id} name={name} img={img}/>
                             </div>
                         </div>

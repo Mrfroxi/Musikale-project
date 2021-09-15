@@ -33,3 +33,9 @@ export const takeInputplayListLists = async(text) =>{
   const {data} = await authHost.post('/api/playList/search',{text})
   return data
 }
+export const changeNamePlayList = async(id,name) => {
+  console.log(id)
+  console.log(name)
+  const {data} = await authHost.put('/api/playList/changeName',{id,name})
+  return data
+}
