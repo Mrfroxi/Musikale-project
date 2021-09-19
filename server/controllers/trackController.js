@@ -12,7 +12,6 @@ const Op = Sequelize.Op;
 class TrackController{
     async  create(req,res){
         try{
-          console.log(req)
           let authorization = req.headers.authorization.split(" ")[1],
           decoded;
             try {
@@ -24,9 +23,10 @@ class TrackController{
           const format = metadata.common.picture[0].format
           const data = metadata.common.picture[0].data
           const img_base64 = `data:${format};base64,${Buffer.from(data).toString('base64')}`
+          const{ closed } = req.body
             const id_user = decoded.id
             const{ filename } =req.file
-            const track = await Track.create({ name:filename ,userId:id_user ,img:img_base64 })
+            const track = await Track.create({ name:filename ,userId:id_user ,img:img_base64,closed:closed })
             return res.json(track)
         }catch(e){
             console.log(e)
