@@ -7,6 +7,7 @@ import Name from "./name";
 import {Skeleton} from "@material-ui/lab";
 import Box from "@material-ui/core/Box";
 import FavouriteButton from './addFavouriteButton'
+import BtnToPlayList from './btnToPlayList'
 function MusicCard(props) {
     const {name,img,id} = props.music;
 
@@ -47,6 +48,7 @@ function MusicCard(props) {
                         >
                             <img src={img} alt={name}/>
                             <div className="play-circle">
+                                <BtnToPlayList id={id} name={name} img={img} />
                                 <PlayCircleFilledWhiteIcon/>
                                 <FavouriteButton id={id} name={name} img={img}/>
                             </div>

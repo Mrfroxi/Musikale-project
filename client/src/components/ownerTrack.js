@@ -2,13 +2,13 @@ import React ,{useState,useEffect} from "react"
 import {Button,Row} from 'react-bootstrap'
 import FooterMusicPlayer from "./footerMusical";
 import FooterSelectMusic from "./footerSelectMusic";
-import MusicCard from './musicListIem'
+import MusicCardOwner from './musicOwnerCard'
 import {authHost} from '../http/index'
 import {useDispatch,useSelector} from 'react-redux'
 import ModalMusic from "./modals/ownerMusic";
 import '../pages/style/ownerTrack.css';
 import Container from 'react-bootstrap/Container'
-
+import SendLogo from '../accets/sendLogo'
 const OwnerTrack = () => {
 
   const dispatch = useDispatch()
@@ -24,43 +24,22 @@ const OwnerTrack = () => {
   
   const { playing } = useSelector(state => state.musicReducer);
 
-  const[newSong,setnewSong] = React.useState(null)
-
-  const sendFile = React.useCallback( async () => {
-    try{
-    const data =  new FormData()
-    data.append('song',newSong)
-    await authHost.post('api/track',data,{
-      headers:{
-        'content-type':'mulpipart/form-data'
-      }
-    })
-    .then( (res) =>  {
-      dispatch({type:"ADD_OWNER_TRACK" , track:res.data})
-      dispatch({type:'ADD_NEW_TRACK' ,track:res.data})
-    }
-    )
-    }catch(e){
-      console.log(e)
-    }
-  },[newSong])
-
     useEffect(() => {
     setCurrMusic(playing)
   }, [playing])
   return(
     <div className="onwTrack">
       <div className ="ownerBlock">
-          <div className="block-dispatch">   
-              <input type="file" id="file" className="input_File" onChange={(e) =>setnewSong(e.target.files[0])} />
-              <Button  variant = {"danger"} className = "btn" onClick={sendFile}>Отправить файл</Button>
-              </div>
-      <Button onClick={() =>setownerVisible(true) }> closeOwnerTrack</Button>
+        <h1 className="onwTrackMainText">Your Tracks:</h1>
+      <Button className="BtnAddmusic" onClick={() =>setownerVisible(true) }>
+        <SendLogo className="Send"/>
+        <p className="Btn_Send_Text">Send Your File</p>
+        </Button>
       </div>
    <Container>
     <Row className={"d-flex mt-4"}>
      {ownertracks.map((elem) => (
-      <MusicCard  key={elem.id} music={elem} closed={elem.closed}/>
+      <MusicCardOwner  key={elem.id} music={elem} closed={elem.closed}/>
       ))}
     </Row>  
     </Container> 

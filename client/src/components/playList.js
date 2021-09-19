@@ -7,24 +7,27 @@ import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhite"
 import  '../pages/style/playList.css'
 import  '../pages/style/playList.scss'
 import Pensil from '../accets/pensil.js'
-
+import { takeplayTrackLists } from '../http/playListAPI'
 function PlayList(props) {
+
   const{id,name,img,handleOpen,changeId} = props
   const history = useHistory()
   const dispatch = useDispatch()
   const selectedPlayList = () => {
-    dispatch({type:"SET_SELECTED_PLAYLIST_NAME",name:name})
+    dispatch({type:"SET_SELECTED_PLAYLIST_NAME",name:name,id:id})
     history.push(PLAYLIST_ITEM+'/'+id)
   }
   const selectedPlayMusic = (e) => {
     e.stopPropagation()
-      console.log(e.target)
+    takeplayTrackLists(id).then(data => {
+      changeId(id)
+      dispatch({type:'GET_ALL_PlayList_Track' , allPlayList:[...data]})
+    })
   }
   const changeName = (e) => {
     e.stopPropagation()
     changeId(id)
     handleOpen()
-      console.log(e.target)
   }
   return (
 

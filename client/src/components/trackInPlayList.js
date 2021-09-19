@@ -12,7 +12,6 @@ import CardPlayListTrack from '../components/cardPlayListTrack'
 function ElementPlayList(props) {
   const id = props.match.params.id
   const dispatch = useDispatch()
-
   useEffect (() => {
     takeplayTrackLists(id).then(data => dispatch({type:'GET_ALL_PlayList_Track' , allPlayList:[...data]}))
   },[])
@@ -20,7 +19,7 @@ function ElementPlayList(props) {
   const [currMusic, setCurrMusic] = useState(null);
 
   const {playing} = useSelector(state => state.musicReducer);
-
+  const {selectPlayList} = useSelector(state => state.playListReducer);
   useEffect(() => {
     setCurrMusic(playing)
 }, [playing])
@@ -28,11 +27,16 @@ function ElementPlayList(props) {
   const SelectTrack = useSelector(state => state.playListReducer.selectPlayList)
 
   const [ownerVisible,setownerVisible] = useState(false)
-
+console.log(selectPlayList)
   return (
     <>
     <Container>
-       <Button onClick={() =>setownerVisible(true) }> closeOwnerTrack</Button>
+       <Button onClick={() =>setownerVisible(true) }> closeOwnerTrack1</Button>
+       {selectPlayList.length>1?
+        <h1 className="MainTextPlayList">{selectPlayList[0].namePlayList}:</h1>
+        :
+        "PlayList"
+       }
            {
              SelectTrack.map((elem) => {
                return <CardPlayListTrack elem={elem}/>

@@ -6,22 +6,34 @@ import ModalCreatePlayList from './modals/createPlayList'
 import '../pages/style/mainPlaylist.css'
 import {takeInputplayListLists} from '../http/playListAPI'
 import ModalChangePlayListName from './modals/modalChangeNamePlayList'
+import FooterPlayListMusicPlayer from "../components/playListfooterMusical";
+import FooterSelectMusic from "../components/footerSelectMusic";
 function MainPlayLists() {
   const dispatch = useDispatch()
-
+  const [currMusic, setCurrMusic] = useState(null);
   const [ownerVisible,setownerVisible] = useState(false)
   const [inputValue , setinputValue] = useState('')
   const [idPlayList , setIdPlayList] =useState('')
   const [NameownerVisible,setNameownerVisible] = useState(false)
+  const {playList} = useSelector(state => state.playListReducer);
+
+  useEffect(() => {
+    playList.forEach((elem) => {
+      if(+elem.id === +idPlayList){
+        setCurrMusic(elem)
+      }
+    })
+   },[idPlayList])
+
+   const {playing} = useSelector(state => state.musicReducer);
+
+    useEffect(() => {
+    setCurrMusic(playing)
+  }, [playing])
 
   useEffect(() => {
    takeInputplayListLists(inputValue).then(data => dispatch({type:'GET_ALL_PlayList' , allplayList:[...data.playList]}))
   },[inputValue])
-
-  // const { playing } = useSelector(state => state.musicReducer);
-  //   useEffect(() => {
-  //   setCurrMusic(playing)
-  // }, [playing])
 
 
   const playLists = useSelector(state=> state.playListReducer.playList)
@@ -56,7 +68,16 @@ function MainPlayLists() {
       })}
         <ModalCreatePlayList show={ownerVisible} handleClose={() => setownerVisible(false)}/>
         <ModalChangePlayListName id={idPlayList} show={NameownerVisible} handleClose={() => setNameownerVisible(false)}/>
+        {
+      currMusic
+         ?
+       <FooterPlayListMusicPlayer idPlayList={idPlayList}/>
+         :
+        <FooterSelectMusic/>
+
+    }
     </div>
+    
     </>
   );
 }

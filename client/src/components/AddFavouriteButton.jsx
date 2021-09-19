@@ -4,6 +4,8 @@ import {useSelector,useDispatch} from 'react-redux'
 import '../pages/style/addButton.css'
 import {AddtakeFavouriteTrack,deleteFavouriteTrack} from '../http/trackAPI'
 import {takeTrack} from '../http/trackAPI'
+import DontLikeHeart from '../accets/heartDontLike'
+import LikeHeart from '../accets/heartLike'
 const FavouriteButton = React.memo((props) =>{
   const dispatch =  useDispatch()
 
@@ -42,12 +44,16 @@ const FavouriteButton = React.memo((props) =>{
 
   return isFav ?(
     <Button className='addButton' onClick={ DeleteMusic }>
-    /
+      <div className="fav_logo">
+        <DontLikeHeart className="DontLikeHeart" />
+      </div>
     </Button>
 
   ):(
     <Button className='addButton' onClick={ addMusic }>
-    +
+      <div className="fav_logo">
+        <LikeHeart className="LikeHeart" />
+      </div>
     </Button>
   )
 }

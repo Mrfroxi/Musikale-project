@@ -14,12 +14,11 @@ import ControlsToggleButton from "./controlsToggleButton";
 import Name from "./name";
 import {ThemeContext} from "../pages/style/Theme";
 import {useDispatch, useSelector} from "react-redux";
-import {setBannerOpen, setCurrentPlaying} from "../actions/actions";
+import { setCurrentPlaying} from "../actions/actions";
 import Button from "@material-ui/core/Button";
+function FooterPlayListMusicPlayer({idPlayList}) {
 
-function FooterMusicPlayer(props) {
-    const {music} = props 
-    const [{id, name, img,nameTrack}, setCurrTrack] = useState(music);
+    const [{id, name, img,nameTrack}, setCurrTrack] = useState({});
     const [isRepeatClicked, setRepeatClick] = useState(false);
     const [isPrevClicked, setPrevClicked] = useState(false);
     const [isNextClicked, setNextClicked] = useState(false);
@@ -33,9 +32,11 @@ function FooterMusicPlayer(props) {
 
     const audioElement = useRef();
     const dispatch = useDispatch();
-    const {publicTracks} = useSelector(state => state.musicReducer);
+    const {selectPlayList} = useSelector(state => state.playListReducer);
     const useStyle = useContext(ThemeContext);
     const pointer = { cursor: "pointer",  color: useStyle.theme };
+
+
 
     const handleToggle = (type, val) => {
         switch (type) {
@@ -70,16 +71,13 @@ function FooterMusicPlayer(props) {
         setBannerToggle(!bannerToggle);
     };
 
-
-    useEffect(()=>{
-        dispatch(setBannerOpen(bannerToggle));
-    },[dispatch,bannerToggle]);
-
-
     useEffect(() => {
+      // eslint-disable-next-line no-unused-expressions
+      if(audioElement.current){
+
         isPlaying
             ? audioElement.current.play().then(()=>{}).catch((e)=>{audioElement.current.pause(); audioElement.current.currentTime=0;})
-            : audioElement.current.pause();
+            : audioElement.current.pause()
         audioElement.current.loop = isRepeatClicked;
         audioElement.current.volume = volume / 100;
         audioElement.current.muted = isVolumeClicked;
@@ -91,11 +89,13 @@ function FooterMusicPlayer(props) {
             if (audioElement.current !== null)
                 setCurrTime(audioElement.current.currentTime);
         })
+      }
     });
-
+    
     useEffect(() => {
-        setCurrTrack(music);
-    }, [music]);
+      console.log(selectPlayList)
+        setCurrTrack(selectPlayList[0]);
+    }, [idPlayList]);
 
 
     useEffect(() => {
@@ -105,26 +105,28 @@ function FooterMusicPlayer(props) {
 
 
     useEffect(()=>{
+      if(audioElement.current){
         audioElement.current.onended = ()=> {
             setNextClicked(true);
         };
+      }
     })
 
     useEffect(()=>{
         if (isNextClicked){
-            let currTrackId = (id+1) % publicTracks.length;
-            dispatch(setCurrentPlaying(publicTracks[currTrackId]));
+            let currTrackId = (id+1) % selectPlayList.length;
+            dispatch(setCurrentPlaying(selectPlayList[currTrackId]));
             setNextClicked(false);
         }
         if (isPrevClicked){
-            let currTrackId = (id-1) % publicTracks.length;
+            let currTrackId = (id-1) % selectPlayList.length;
             if ((id-1)<0){
-                currTrackId = publicTracks.length - 1;
+                currTrackId = selectPlayList.length - 1;
             }
-            dispatch(setCurrentPlaying(publicTracks[currTrackId]));
+            dispatch(setCurrentPlaying(selectPlayList[currTrackId]));
             setPrevClicked(false);
         }
-    },[dispatch, id, isNextClicked, isPrevClicked, publicTracks]);
+    },[dispatch, id, isNextClicked, isPrevClicked, selectPlayList]);
 
 
     function formatTime(secs) {
@@ -154,7 +156,7 @@ function FooterMusicPlayer(props) {
                         name?
                         <Name name={name} className={"song-name"} length={name.length}/>
                         :
-                        <Name name={nameTrack} className={"song-name"} length={nameTrack.length}/>
+                        <Name name={nameTrack} className={"song-name"} length={nameTrack?.length}/>
                     }
                 </div>
             </Button>
@@ -173,7 +175,11 @@ function FooterMusicPlayer(props) {
                         name?
                         <audio ref={audioElement} src={require(`../../../server/song/${name}` ).default} preload={"metadata"}/>
                         :
+                        nameTrack?
+                      
                         <audio ref={audioElement} src={require(`../../../server/song/${nameTrack}` ).default} preload={"metadata"}/>
+                        :
+                        null
                     }
 
                 <ControlsToggleButton style={pointer} type={"play-pause"}
@@ -208,4 +214,4 @@ function FooterMusicPlayer(props) {
     );
 }
 
-export default FooterMusicPlayer;
+export default FooterPlayListMusicPlayer;

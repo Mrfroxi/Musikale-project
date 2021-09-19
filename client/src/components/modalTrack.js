@@ -6,7 +6,6 @@ import {useDispatch,useSelector} from 'react-redux'
 import {changeCloseTrack} from '../http/trackAPI'
 
 const ModalTrack = ({music}) => {
-
   const {publicTracks} = useSelector(state=> state.musicReducer)
 
   const[isPublic,setisPublic] = useState(false)

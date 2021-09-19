@@ -1,7 +1,7 @@
 const defaultState = {
   playList:[],
   selectPlayList:[],
-  selectPlayListName:''
+  selectPlayListName:null
 }
 
 
@@ -38,7 +38,7 @@ export const playListReducer = (state=defaultState,action ) =>{
           ...state,
           playList:state.playList.map((elem) => {
             if(elem.id === action.id){
-              elem.name = action.name
+              state.selectPlayListName = `${action.name}`
             }
             return elem
           })

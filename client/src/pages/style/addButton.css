@@ -14,3 +14,24 @@
 .addButton:hover{
   background-color: rgb(235, 4, 235);
 }
+.DontLikeHeart{
+  position: relative;
+  left: -9px;
+  width: 30px;
+  height: 30px;
+  color: brown;
+}
+.LikeHeart{
+  position: relative;
+  left: -9px;
+  width: 30px;
+  height: 30px;
+  color: rgb(125, 255, 4);
+}
+.fav_logo{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

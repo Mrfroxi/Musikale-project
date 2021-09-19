@@ -50,3 +50,57 @@
     }
   }
 }
+
+.LockBlock{
+  background-color: rgba(228, 95, 139, 0.3);
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 160px;
+  top: 8px;
+}
+.LockBlock:hover{
+  background-color: rgba(240, 9, 9, 0.3);
+}
+.DontLock{
+  background-color: rgba(107, 194, 90, 0.3);
+}
+.DontLock:hover{
+  background-color: rgba(59, 224, 26, 0.932);
+}
+.Globe{
+  color: rgba(59, 224, 26, 0.932);;
+}
+.Key{
+  color:rgba(240, 9, 9, 0.952)
+}
+.block-dispatch{
+  display: flex;
+  flex-direction: column;
+  padding-bottom:20px ;
+}
+.form-check-label{
+  position: relative;
+  top: 0px;
+}
+.checkbox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.checkBoxText{
+  font-size:24px;
+  margin-left:10px ;
+}
+.modal-block{
+  display: flex;
+  flex-direction: column;
+}
+.checkBoxText2{
+  font-size:18px;
+  margin-left:10px ;
+}
